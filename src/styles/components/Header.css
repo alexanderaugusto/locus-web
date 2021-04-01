@@ -11,17 +11,138 @@
 
 .header .logo{
   height: 100%;
-  cursor: pointer;
 }
 
-.header .btn-user #icon{
+.header .logo img{
+  height: 100%;
+}
+
+.header .dropdown .dropdown-menu{
+  right: 0;
+  left: auto;
+  top: 70px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.06);
+  padding: 15px;
+  width: 300px;
+}
+
+/* not signed */
+.header .dropdown-not-signed .dropdown-toggle #icon{
   color: #0565FC;
   font-size: 30px;
 }
 
-.header .btn-user img{
+.header .dropdown-not-signed .dropdown-menu{
+  height: 220px;
+}
+
+.header .dropdown-not-signed .dropdown-menu .menu-not-signed{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.header .dropdown-not-signed .dropdown-menu #icon{
+  font-size: 50px;
+  color: #0565FC;
+}
+
+.header .dropdown-not-signed .dropdown-menu p{
+  font-size: 20px;
+  color: #2C3E50;
+  text-align: center;
+}
+
+.header .dropdown-not-signed .dropdown-menu a{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  background-color: #0565FC;
+  border-radius: 25px;
+  padding: 7px 20px 7px 20px;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+/* signed */
+.header .dropdown-signed .dropdown-toggle img{
   height: 50px;
   width: 50px;
   border-radius: 50px;
   border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.header .dropdown-signed .dropdown-menu .user-info{
+  display: flex;
+}
+
+.header .dropdown-signed .dropdown-menu .user-info img{
+  height: 60px;
+  width: 60px;
+  border-radius: 60px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  margin-right: 15px;
+}
+
+.header .dropdown-signed .dropdown-menu .user-info p{
+  font-size: 17px;
+  font-weight: bold;
+  color: #2C3E50;
+}
+
+.header .dropdown-signed .dropdown-menu .user-info button{
+  background-color: #0565FC;
+  border-radius: 25px;
+  padding: 5px 20px 5px 20px;
+  margin-top: 5px;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+.header .dropdown-signed .dropdown-menu ul{
+  border-top: 2px solid rgba(127, 140, 141, 0.3);
+  margin: 15px -15px -15px -15px;
+}
+
+.header .dropdown-signed .dropdown-menu ul li{
+  padding: 12px 15px 12px 15px;
+  cursor: pointer;
+}
+.header .dropdown-signed .dropdown-menu ul li:hover{
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+.header .dropdown-signed .dropdown-menu ul li a{
+  display: flex;
+  align-items: center;
+  color: #7F8C8D;
+}
+
+.header .dropdown-signed .dropdown-menu ul .active-item a{
+  color: #0565FC;
+}
+
+.header .dropdown-signed .dropdown-menu ul li #icon{
+ font-size: 23px;
+}
+
+.header .dropdown-signed .dropdown-menu ul li p{
+  margin-left: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.header .dropdown-signed .dropdown-menu ul li:last-child {
+  -moz-border-radius-bottomleft: 10px;
+  -moz-border-radius-bottomright: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }

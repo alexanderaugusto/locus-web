@@ -3,6 +3,7 @@ import { AppProps } from 'next/app'
 import { AuthProvider } from '../contexts/auth'
 
 import '../styles/global.css'
+import '../styles/components/Dropdown.css'
 import '../styles/pages/Home.css'
 import '../styles/components/Header.css'
 
