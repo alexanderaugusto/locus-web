@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: #F0F0F0;
+}
+
+button{
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  width: auto;
+  height: auto;
+}
