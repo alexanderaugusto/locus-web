@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
-import { faUserAlt } from '@fortawesome/free-solid-svg-icons'
+import { faUserAlt, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { Person, Favorite, Loyalty } from '@material-ui/icons'
 import { useAuth } from '../contexts/auth'
 import { STORAGE_URL } from '../services/api'
@@ -10,7 +10,11 @@ import { Dropdown } from './index'
 
 import Logo from '../assets/logo-text-horizontal.png'
 
-const Header: React.FC = () => {
+type HeaderProps = {
+  goBack?: boolean
+}
+
+const Header: React.FC<HeaderProps> = ({ goBack }) => {
   const auth = useAuth()
   const router = useRouter()
 
@@ -20,11 +24,17 @@ const Header: React.FC = () => {
 
   return (
     <div className="header">
-      <Link href="/">
-        <a className="logo">
-          <img src={Logo} alt="IMovel" />
-        </a>
-      </Link>
+      {!goBack ? (
+        <Link href="/">
+          <a className="logo">
+            <img src={Logo} alt="IMovel" />
+          </a>
+        </Link>
+      ) : (
+        <button className="btn-go-back" onClick={() => router.back()}>
+          <Icon id="icon" icon={faArrowLeft} />
+        </button>
+      )}
       {!auth.signed ? (
         <Dropdown
           className="dropdown-not-signed"

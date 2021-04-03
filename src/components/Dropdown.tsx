@@ -31,8 +31,6 @@ const Dropdown: React.FC<DropdownProps> = ({ children, menu, className }) => {
     setOpened(!opened)
   }
 
-  console.log(opened)
-
   return (
     <div ref={dropdownRef} className={'dropdown ' + className}>
       <button className="dropdown-toggle" onClick={toggle}>

@@ -3,9 +3,12 @@ import { AppProps } from 'next/app'
 import { AuthProvider } from '../contexts/auth'
 
 import '../styles/global.css'
-import '../styles/components/Dropdown.css'
 import '../styles/pages/Home.css'
+import '../styles/pages/Login.css'
+import '../styles/components/Button.css'
+import '../styles/components/Dropdown.css'
 import '../styles/components/Header.css'
+import '../styles/components/Input.css'
 
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'

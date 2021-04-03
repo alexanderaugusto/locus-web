@@ -17,6 +17,11 @@
   height: 100%;
 }
 
+.header .btn-go-back #icon{
+  font-size: 20px;
+  color: #2C3E50;
+}
+
 .header .dropdown .dropdown-menu{
   right: 0;
   left: auto;
