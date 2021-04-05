@@ -46,35 +46,33 @@ const StepProgress: React.FC<StepProgressProps> = ({
       <ul className="steps-container">
         {steps.map((item, index) => {
           return (
-            <>
-              <li
-                key={index}
-                className={
-                  'step ' +
-                  (isActiveStep(index) ? 'active-step ' : '') +
-                  (isCompleteStep(index) ? 'complete-step' : '')
-                }
-              >
-                <div className="step-circle">
-                  <div className="step-number">
-                    {isCompleteStep(index) ? (
-                      <Icon id="icon" icon={faCheck} />
-                    ) : (
-                      index + 1
-                    )}
-                  </div>
-                  {index + 1 !== steps.length && <div className="step-line" />}
+            <li
+              key={index}
+              className={
+                'step ' +
+                (isActiveStep(index) ? 'active-step ' : '') +
+                (isCompleteStep(index) ? 'complete-step' : '')
+              }
+            >
+              <div className="step-circle">
+                <div className="step-number">
+                  {isCompleteStep(index) ? (
+                    <Icon id="icon" icon={faCheck} />
+                  ) : (
+                    index + 1
+                  )}
                 </div>
-                <label className="step-label">{item.label}</label>
-              </li>
-            </>
+                {index + 1 !== steps.length && <div className="step-line" />}
+              </div>
+              <label className="step-label">{item.label}</label>
+            </li>
           )
         })}
       </ul>
       <div className="steps-content">{steps[activeStep].content()}</div>
       <div className={'steps-action ' + (activeStep === 0 ? 'step-0' : '')}>
         {activeStep !== 0 && <Button onClick={previousStep}>Anterior</Button>}
-        {activeStep < steps.length ? (
+        {activeStep + 1 < steps.length ? (
           <Button onClick={nextStep}>Próximo</Button>
         ) : (
           <Button onClick={onSubmit}>Finalizar</Button>

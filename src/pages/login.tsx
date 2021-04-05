@@ -20,7 +20,7 @@ const Home: React.FC = () => {
     await auth
       .signIn(email, password)
       .then(() => {
-        router.back()
+        router.push('/')
       })
       .catch(err => {
         console.log(err)
