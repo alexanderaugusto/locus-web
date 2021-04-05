@@ -9,6 +9,7 @@ import '../styles/components/Button.css'
 import '../styles/components/Dropdown.css'
 import '../styles/components/Header.css'
 import '../styles/components/Input.css'
+import '../styles/components/StepProgress.css'
 
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
