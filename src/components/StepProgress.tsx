@@ -4,7 +4,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { Button } from './index'
 
 type StepProps = {
-  label: string
+  label?: string
   content: () => JSX.Element
 }
 
@@ -64,7 +64,7 @@ const StepProgress: React.FC<StepProgressProps> = ({
                 </div>
                 {index + 1 !== steps.length && <div className="step-line" />}
               </div>
-              <label className="step-label">{item.label}</label>
+              {item.label && <label className="step-label">{item.label}</label>}
             </li>
           )
         })}
