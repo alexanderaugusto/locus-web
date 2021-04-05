@@ -1,0 +1,45 @@
+.input-area{
+  width: 100%;
+}
+
+.input-area label{
+  font-size: 13px;
+  color: #7F8C8D;
+}
+
+.input-area textarea{
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 100px;
+  padding-left: 15px;
+  color: #2C3E50;
+  background-color: #FFFFFF;
+  border-radius: 25px;
+  border: 2px solid #0565FC;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px 5px 30px;
+  margin-top: 3px;
+  resize: none;
+}
+.input-area textarea::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #7F8C8D;
+  opacity: 1; /* Firefox */
+}
+.input-area textarea:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #7F8C8D;
+}
+.input-area textarea::-ms-input-placeholder { /* Microsoft Edge */
+  color: #7F8C8D;
+}
+
+.input-area textarea::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.input-area textarea {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
