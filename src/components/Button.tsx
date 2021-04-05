@@ -1,9 +1,9 @@
 import React, { ButtonHTMLAttributes } from 'react'
 
-type InputProps = ButtonHTMLAttributes<HTMLButtonElement>
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>
 
-const Input: React.FC<InputProps> = ({ ...buttonProps }) => {
+const Button: React.FC<ButtonProps> = ({ ...buttonProps }) => {
   return <button {...buttonProps} className="button-container" />
 }
 
-export default Input
+export default Button
