@@ -8,7 +8,7 @@ import { useAuth } from '../contexts/auth'
 
 import Logo from '../assets/logo-text.png'
 
-const Home: React.FC = () => {
+const Login: React.FC = () => {
   const auth = useAuth()
   const router = useRouter()
   const [email, setEmail] = useState('')
@@ -65,4 +65,4 @@ const Home: React.FC = () => {
   )
 }
 
-export default Home
+export default Login
