@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import Dropzone from 'react-dropzone'
 import api, { STORAGE_URL } from '../services/api'
 import { Header, Input, StepProgress } from '../components'
+import inputValidation from '../utils/inputValidation'
 
 const SignUp: React.FC = () => {
   const router = useRouter()
@@ -71,7 +72,7 @@ const SignUp: React.FC = () => {
           label="CPF"
           placeholder="xxx.xxx.xxx-xx"
           value={data.cpf}
-          onChange={e => onChange('cpf', e.target.value)}
+          onChange={e => onChange('cpf', inputValidation.cpf(e.target.value))}
         />
 
         <Input
@@ -79,7 +80,9 @@ const SignUp: React.FC = () => {
           label="Celular"
           placeholder="(xx) xxxxx-xxxx"
           value={data.phone}
-          onChange={e => onChange('phone', e.target.value)}
+          onChange={e =>
+            onChange('phone', inputValidation.phone(e.target.value))
+          }
         />
       </div>
     )
