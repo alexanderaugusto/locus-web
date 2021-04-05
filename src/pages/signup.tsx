@@ -170,6 +170,8 @@ const SignUp: React.FC = () => {
         <Header goBack />
 
         <div className="sign-up">
+          <h1>É rápido, simples e gratuito!</h1>
+
           <StepProgress
             steps={[
               {

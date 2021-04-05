@@ -10,6 +10,14 @@
   margin-top: 10vh;
 }
 
+.signup-page .sign-up h1{
+  font-size: 30px;
+  font-weight: bold;
+  color: #2C3E50;
+  text-align: center;
+  margin-bottom: 7vh;
+}
+
 .signup-page .sign-up .step-progress .steps-content .input{
   margin-top: 25px;
 }
