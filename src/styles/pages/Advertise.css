@@ -1,0 +1,31 @@
+.advertise-page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.advertise-page .advertise{
+  width: 100%;
+  padding-left: 7vw;
+  padding-right: 7vw;
+}
+
+.advertise-page .advertise .title{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 7vh;
+  margin-bottom: 7vh;
+}
+
+.advertise-page .advertise .title h1{
+  width: 100%;
+  font-size: 30px;
+  font-weight: bold;
+  color: #2C3E50;
+  text-align: center;
+}
+
+.advertise-page .advertise .title button{
+  min-width: 150px;
+  height: 40px;
+}

@@ -5,7 +5,7 @@ import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: IconDefinition
   label?: string
-  labelInside?: boolean
+  labelInside?: string
 }
 
 const Input: React.FC<InputProps> = ({
@@ -16,10 +16,10 @@ const Input: React.FC<InputProps> = ({
 }) => {
   return (
     <div className="input">
-      {label && !labelInside && <label>{label}</label>}
+      {label && <label>{label}</label>}
       <div className="input-container">
         {icon && <Icon id="icon" icon={icon} />}
-        {label && labelInside && <label>{label}</label>}
+        {labelInside && <label>{label}</label>}
         <input {...inputProps} autoComplete="new-password" />
       </div>
     </div>

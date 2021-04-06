@@ -1,0 +1,60 @@
+.new-advertise-page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.new-advertise-page .new-advertise{
+  max-width: 650px;
+  width: 95%;
+  margin-top: 10vh;
+}
+
+.new-advertise-page .new-advertise h1{
+  font-size: 30px;
+  font-weight: bold;
+  color: #2C3E50;
+  text-align: center;
+  margin-bottom: 7vh;
+}
+
+.new-advertise-page .new-advertise h2{
+  font-size: 18px;
+  color: #7F8C8D;
+  text-align: center;
+  font-weight: normal;
+}
+
+.new-advertise-page .new-advertise .input, .new-advertise-page .new-advertise .input-area{
+  margin-top: 25px;
+}
+
+.new-advertise-page .new-advertise .input, .new-advertise-page .new-advertise .input-select{
+  margin-top: 25px;
+}
+
+.new-advertise-page .new-advertise .step-4 .images{
+  margin-top: 7vh;
+  display: grid;
+  grid-template-columns: 33.33% 33.33% 33.33%;
+  gap: 10px;
+}
+
+.new-advertise-page .new-advertise .step-4 .image-item{
+  height: 200px;
+  width: 95%;
+  border-radius: 10px;
+}
+
+.new-advertise-page .new-advertise .step-4 .images .upload-container{
+  background-color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.new-advertise-page .new-advertise .step-4 .images .upload-container #icon{
+  color: #0565FC;
+  font-size: 18px;
+}

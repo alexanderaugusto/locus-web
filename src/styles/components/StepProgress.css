@@ -74,6 +74,7 @@
 
 .step-progress .steps-action{
   margin-top: 7vh;
+  margin-bottom: 7vh;
   display: flex;
   justify-content: space-evenly;
 }

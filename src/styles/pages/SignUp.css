@@ -22,10 +22,11 @@
   margin-top: 25px;
 }
 
-.signup-page .sign-up .step-progress .steps-content .password-step p{
+.signup-page .sign-up .step-progress .steps-content .password-step h2{
   font-size: 18px;
   color: #7F8C8D;
   text-align: center;
+  font-weight: normal;
 }
 
 .signup-page .sign-up .step-progress .steps-content .photo-step{

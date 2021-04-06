@@ -24,7 +24,8 @@ const SignUp: React.FC = () => {
   }
 
   function onChangeAvatar(file) {
-    const avatar = { ...file, preview: URL.createObjectURL(file) }
+    const avatar = file
+    avatar.preview = URL.createObjectURL(file)
     setData({ ...data, avatar })
   }
 
@@ -113,10 +114,10 @@ const SignUp: React.FC = () => {
   function step3() {
     return (
       <div className="password-step">
-        <p>
+        <h2>
           Para sua segurança, a senha deve ter no mínimo 8 caracteres, com
           números, letra maiúscula e minúscula e caracteres especiais.
-        </p>
+        </h2>
         <Input
           type="password"
           label="Senha"

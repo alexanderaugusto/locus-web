@@ -1,10 +1,10 @@
 import React, { TextareaHTMLAttributes } from 'react'
 
-interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+interface InputAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string
 }
 
-const Input: React.FC<InputProps> = ({ label, ...inputAreaProps }) => {
+const InputArea: React.FC<InputAreaProps> = ({ label, ...inputAreaProps }) => {
   return (
     <div className="input-area">
       {label && <label>{label}</label>}
@@ -13,4 +13,4 @@ const Input: React.FC<InputProps> = ({ label, ...inputAreaProps }) => {
   )
 }
 
-export default Input
+export default InputArea
