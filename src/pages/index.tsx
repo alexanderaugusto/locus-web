@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Head from 'next/head'
-import { Header } from '../components'
+import { Header, FilterModal } from '../components'
 
 const Home: React.FC = () => {
+  const [filterOpen, setFilterOpen] = useState(true)
+
   return (
     <div>
       <Head>
@@ -11,6 +13,12 @@ const Home: React.FC = () => {
 
       <main>
         <Header />
+
+        <FilterModal
+          isOpen={filterOpen}
+          onToggle={() => setFilterOpen(false)}
+          applyFilter={options => console.log(options)}
+        />
       </main>
     </div>
   )

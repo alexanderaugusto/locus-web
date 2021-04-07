@@ -1,0 +1,30 @@
+.input-check{
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.input-check .input-container{
+  background-color: transparent;
+  border-radius: 5px;
+  border: 2px solid #0565FC;
+  display: flex;
+  align-items: center;
+  width: 20px !important;
+  height: 20px !important;
+  margin-right: 7px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-check .input-container #icon{
+  font-size: 9px;
+  color: #333636;
+}
+
+.input-check label{
+  font-size: 16px;
+  color: #7F8C8D;
+}

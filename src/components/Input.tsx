@@ -19,7 +19,7 @@ const Input: React.FC<InputProps> = ({
       {label && <label>{label}</label>}
       <div className="input-container">
         {icon && <Icon id="icon" icon={icon} />}
-        {labelInside && <label>{label}</label>}
+        {labelInside && <label>{labelInside}</label>}
         <input {...inputProps} autoComplete="new-password" />
       </div>
     </div>

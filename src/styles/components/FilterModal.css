@@ -1,0 +1,120 @@
+.modal-filter .modal-container{
+  background-color: #FFFFFF;
+  max-width: 400px;
+  width: 95%;
+  max-height: 90%;
+  overflow-y: auto;
+  height: auto;
+  border-radius: 10px;
+  padding: 15px 25px 15px 25px;
+}
+/* width */
+.modal-filter .modal-container::-webkit-scrollbar {
+  width: 10px;
+}
+/* Track */
+.modal-filter .modal-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+/* Handle */
+.modal-filter .modal-container::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0.2);
+  border-radius: 10px;
+}
+/* Handle on hover */
+.modal-filter .modal-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(136, 136, 136, 1);
+}
+
+/* Modal Header */
+.modal-filter .modal-container .modal-header{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-filter .modal-container .modal-header button{
+  font-size: 18px;
+  color: #2C3E50;
+}
+
+/* Modal Body */
+.modal-filter .modal-container .modal-body .filter-item{
+  margin-top: 30px;
+  padding-bottom: 30px;
+  border-bottom: 2px solid rgba(127, 140, 141, 0.2);
+}
+
+.modal-filter .modal-container .modal-body .filter-item h1{
+  font-size: 18px;
+  font-weight: bold;
+  color: #2C3E50;
+}
+
+.modal-filter .modal-container .modal-body .filter-item .inputs{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.modal-filter .modal-container .modal-body .filter-item .inputs .input{
+  width: 130px;
+}
+
+.modal-filter .modal-container .modal-body .filter-item .inputs .input .input-container{
+  height: 35px;
+}
+
+.modal-filter .modal-container .modal-body .filter-item .options{
+  display: flex;
+  margin-top: 10px;
+}
+
+.modal-filter .modal-container .modal-body .filter-item .options button{
+  width: 35px;
+  height: 35px;
+  border-radius: 35px;
+  background-color: transparent;
+  border: 1px solid #0565FC;
+  color: #7F8C8D;
+  margin-right: 10px;
+}
+
+.modal-filter .modal-container .modal-body .filter-item .options #btn-whatever{
+  width: fit-content;
+  height: 35px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.modal-filter .modal-container .modal-body .filter-item .options .btn-active{
+  background-color: #0565FC;
+  color: #FFFFFF;
+}
+
+.modal-filter .modal-container .modal-body .filter-item .options-type{
+  flex-direction: column;
+}
+
+.modal-filter .modal-container .modal-body .filter-item .options-type .input-check{
+  margin-top: 10px;
+}
+
+/* Modal Footer */
+.modal-filter .modal-container .modal-footer{
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.modal-filter .modal-container .modal-footer button{
+  width: fit-content;
+  height: fit-content;
+  padding: 8px 30px 8px 30px;
+}
+
+.modal-filter .modal-container .modal-footer #btn-clean{
+  background-color: transparent;
+  color: #0565FC;
+  border: 1px solid #0565FC;
+}

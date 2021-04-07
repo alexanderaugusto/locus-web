@@ -1,9 +1,21 @@
 import Button from './Button'
 import Dropdown from './Dropdown'
+import FilterModal from './FilterModal'
 import Header from './Header'
 import Input from './Input'
 import InputArea from './InputArea'
+import InputCheck from './InputCheck'
 import InputSelect from './InputSelect'
 import StepProgress from './StepProgress'
 
-export { Button, Dropdown, Header, Input, InputArea, InputSelect, StepProgress }
+export {
+  Button,
+  Dropdown,
+  FilterModal,
+  Header,
+  Input,
+  InputArea,
+  InputCheck,
+  InputSelect,
+  StepProgress
+}
