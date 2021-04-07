@@ -26,6 +26,10 @@
   margin-right: 10px;
 }
 
+.input .input-container label{
+  width: 40px;
+}
+
 .input .input-container input{
   border: none;
   outline: none;

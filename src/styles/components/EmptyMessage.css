@@ -1,0 +1,37 @@
+.empty-message{
+  max-width: 500px;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 7vh;
+}
+
+.empty-message #icon{
+  font-size: 100px;
+  color: #0565FC;
+}
+
+.empty-message h1{
+  font-size: 25px;
+  font-weight: bold;
+  color: #2C3E50;
+  text-align: center;
+  margin-top: 25px;
+}
+
+.empty-message p{
+  font-size: 20px;
+  font-weight: normal;
+  color: #AAADB3;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.empty-message button{
+  width: fit-content;
+  height: fit-content;
+  padding: 8px 25px 8px 25px;
+  margin-top: 25px;
+}
+

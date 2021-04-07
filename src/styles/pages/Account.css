@@ -1,0 +1,74 @@
+.account-page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.account-page .account{
+  max-width: 450px;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 7vh;
+}
+
+.account-page .account h1{
+  font-size: 30px;
+  font-weight: bold;
+  color: #2C3E50;
+  text-align: center;
+}
+
+.account-page .account .user-info{
+  background-color: #FFFFFF;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  margin-top: 25px;
+}
+
+.account-page .account .user-info img{
+  width: 150px;
+  height: 150px;
+  border-radius: 150px;
+  border: 2px solid #7F8C8D;
+  cursor: pointer;
+}
+
+.account-page .account .user-info p{
+  font-size: 18px;
+  color: #2C3E50;
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.account-page .account .user-info button{
+  width: fit-content;
+  height: fit-content;
+  padding: 7px 25px 7px 25px;
+}
+
+.account-page .account form{
+  width: 100%;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.account-page .account form .input{
+  margin-top: 25px;
+}
+
+.account-page .account form button{
+  margin-top: 25px;
+  width: fit-content;
+  height: fit-content;
+  padding: 10px 30px 10px 30px;
+}
