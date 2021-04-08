@@ -25,11 +25,13 @@ const Login: React.FC = () => {
         router.push('/')
       })
       .catch(err => {
-        console.log(err)
         const type = err.response.status >= 500 ? 'error' : 'warning'
         const title = 'Algo deu errado :('
         const message = err.response?.data.message
         alert.show(type, title, message)
+        if (process.env.NODE_ENV !== 'production') {
+          console.log(err)
+        }
       })
   }
 

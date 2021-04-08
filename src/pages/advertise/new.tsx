@@ -5,6 +5,7 @@ import Dropzone from 'react-dropzone'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import api from '../../services/api'
+import { useAlert } from '../../contexts/alert'
 import {
   Header,
   Input,
@@ -16,6 +17,7 @@ import states from '../../constants/states'
 import types from '../../constants/types'
 
 const NewAdvertise: React.FC = () => {
+  const alert = useAlert()
   const router = useRouter()
   const [data, setData] = useState({
     title: '',
@@ -85,7 +87,13 @@ const NewAdvertise: React.FC = () => {
         router.push('/advertise')
       })
       .catch(err => {
-        console.error(err)
+        const type = err.response.status >= 500 ? 'error' : 'warning'
+        const title = 'Algo deu errado :('
+        const message = err.response?.data.message
+        alert.show(type, title, message)
+        if (process.env.NODE_ENV !== 'production') {
+          console.log(err)
+        }
       })
   }
 

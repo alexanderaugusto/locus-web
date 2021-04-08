@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Dropzone from 'react-dropzone'
+import { useAlert } from '../contexts/alert'
 import api, { STORAGE_URL } from '../services/api'
 import { Header, Input, StepProgress } from '../components'
 import inputValidation from '../utils/inputValidation'
 
 const SignUp: React.FC = () => {
+  const alert = useAlert()
   const router = useRouter()
   const [data, setData] = useState({
     name: '',
@@ -53,7 +55,13 @@ const SignUp: React.FC = () => {
         router.push('/login')
       })
       .catch(err => {
-        console.error(err)
+        const type = err.response.status >= 500 ? 'error' : 'warning'
+        const title = 'Algo deu errado :('
+        const message = err.response?.data.message
+        alert.show(type, title, message)
+        if (process.env.NODE_ENV !== 'production') {
+          console.log(err)
+        }
       })
   }
 

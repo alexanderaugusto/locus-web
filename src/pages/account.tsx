@@ -3,12 +3,14 @@ import Head from 'next/head'
 import Dropzone from 'react-dropzone'
 import { faUserAlt } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../contexts/auth'
+import { useAlert } from '../contexts/alert'
 import api, { STORAGE_URL } from '../services/api'
 import inputValidation from '../utils/inputValidation'
 import { Button, Header, Input, EmptyMessage } from '../components'
 
 const Account: React.FC = () => {
   const auth = useAuth()
+  const alert = useAlert()
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -26,7 +28,13 @@ const Account: React.FC = () => {
         })
       })
       .catch(err => {
-        console.error(err)
+        const type = err.response.status >= 500 ? 'error' : 'warning'
+        const title = 'Algo deu errado :('
+        const message = err.response?.data.message
+        alert.show(type, title, message)
+        if (process.env.NODE_ENV !== 'production') {
+          console.log(err)
+        }
       })
   }
 
@@ -42,9 +50,23 @@ const Account: React.FC = () => {
       phone: user.phone
     }
 
-    await api.put('/user', data).catch(err => {
-      console.error(err)
-    })
+    await api
+      .put('/user', data)
+      .then(() => {
+        const type = 'success'
+        const title = 'Deu tudo certo :D'
+        const message = 'Seus dados foram salvos com sucesso.'
+        alert.show(type, title, message)
+      })
+      .catch(err => {
+        const type = err.response.status >= 500 ? 'error' : 'warning'
+        const title = 'Algo deu errado :('
+        const message = err.response?.data.message
+        alert.show(type, title, message)
+        if (process.env.NODE_ENV !== 'production') {
+          console.log(err)
+        }
+      })
   }
 
   async function updateAvatar(image) {
@@ -64,7 +86,9 @@ const Account: React.FC = () => {
     })
 
     await api.put('/user/avatar', data, config).catch(err => {
-      console.error(err)
+      if (process.env.NODE_ENV !== 'production') {
+        console.log(err)
+      }
     })
   }
 
