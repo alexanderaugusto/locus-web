@@ -42,7 +42,7 @@ const Alert: React.FC<AlertProps> = ({
       timer = setTimeout(() => {
         toggle()
         clearTimeout(timer)
-      }, 5000)
+      }, 7000)
     }
   }, [show])
 
