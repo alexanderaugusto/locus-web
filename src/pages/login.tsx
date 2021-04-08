@@ -5,11 +5,13 @@ import { useRouter } from 'next/router'
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
 import { Header, Button, Input } from '../components'
 import { useAuth } from '../contexts/auth'
+import { useAlert } from '../contexts/alert'
 
 import Logo from '../assets/logo-text.png'
 
 const Login: React.FC = () => {
   const auth = useAuth()
+  const alert = useAlert()
   const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -24,6 +26,10 @@ const Login: React.FC = () => {
       })
       .catch(err => {
         console.log(err)
+        const type = err.response.status >= 500 ? 'error' : 'warning'
+        const title = 'Algo deu errado :('
+        const message = err.response?.data.message
+        alert.show(type, title, message)
       })
   }
 

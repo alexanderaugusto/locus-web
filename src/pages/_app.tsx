@@ -1,6 +1,7 @@
 import React from 'react'
 import { AppProps } from 'next/app'
 import { AuthProvider } from '../contexts/auth'
+import { AlertProvider } from '../contexts/alert'
 
 import '../styles/global.css'
 import '../styles/pages/Home.css'
@@ -11,6 +12,7 @@ import '../styles/pages/AdvertiseMedia.css'
 import '../styles/pages/NewAdvertise.css'
 import '../styles/pages/NewAdvertiseMedia.css'
 import '../styles/pages/Account.css'
+import '../styles/components/Alert.css'
 import '../styles/components/Button.css'
 import '../styles/components/Dropdown.css'
 import '../styles/components/EmptyMessage.css'
@@ -28,9 +30,11 @@ config.autoAddCss = false
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <AuthProvider>
-      <Component {...pageProps} />
-    </AuthProvider>
+    <AlertProvider>
+      <AuthProvider>
+        <Component {...pageProps} />
+      </AuthProvider>
+    </AlertProvider>
   )
 }
 

@@ -1,3 +1,4 @@
+import Alert from './Alert'
 import Button from './Button'
 import Dropdown from './Dropdown'
 import EmptyMessage from './EmptyMessage'
@@ -10,6 +11,7 @@ import InputSelect from './InputSelect'
 import StepProgress from './StepProgress'
 
 export {
+  Alert,
   Button,
   Dropdown,
   EmptyMessage,
