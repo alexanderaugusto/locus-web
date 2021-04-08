@@ -35,72 +35,77 @@ const Header: React.FC<HeaderProps> = ({ goBack }) => {
           <Icon id="icon" icon={faArrowLeft} />
         </button>
       )}
-      {!auth.signed ? (
-        <Dropdown
-          className="dropdown-not-signed"
-          menu={
-            <div className="menu-not-signed">
-              <Icon id="icon" icon={faUserAlt} />
-              <p>Você ainda não está logado em uma conta!</p>
-              <Link href="/login">
-                <a>Entrar</a>
-              </Link>
-            </div>
-          }
-        >
-          <Icon id="icon" icon={faUserAlt} />
-        </Dropdown>
-      ) : (
-        <Dropdown
-          className="dropdown-signed"
-          menu={
-            <>
-              <div className="user-info">
-                <img
-                  src={`${STORAGE_URL}/user/${auth.user.avatar}`}
-                  alt="Sua imagem"
-                />
-                <div>
-                  <p>{auth.user.name}</p>
-                  <button onClick={auth.signOut}>Sair</button>
-                </div>
+      {!goBack &&
+        (!auth.signed ? (
+          <Dropdown
+            className="dropdown-not-signed"
+            menu={
+              <div className="menu-not-signed">
+                <Icon id="icon" icon={faUserAlt} />
+                <p>Você ainda não está logado em uma conta!</p>
+                <Link href="/login">
+                  <a>Entrar</a>
+                </Link>
               </div>
+            }
+          >
+            <Icon id="icon" icon={faUserAlt} />
+          </Dropdown>
+        ) : (
+          <Dropdown
+            className="dropdown-signed"
+            menu={
+              <>
+                <div className="user-info">
+                  <img
+                    src={`${STORAGE_URL}/user/${auth.user.avatar}`}
+                    alt="Sua imagem"
+                  />
+                  <div>
+                    <p>{auth.user.name}</p>
+                    <button onClick={auth.signOut}>Sair</button>
+                  </div>
+                </div>
 
-              <ul>
-                <li className={isPathActive('/account') ? 'active-item' : ''}>
-                  <Link href="/account">
-                    <a>
-                      <Person id="icon" />
-                      <p>Minha conta</p>
-                    </a>
-                  </Link>
-                </li>
-                <li className={isPathActive('/favorite') ? 'active-item' : ''}>
-                  <Link href="/favorite">
-                    <a>
-                      <Favorite id="icon" />
-                      <p>Favoritos</p>
-                    </a>
-                  </Link>
-                </li>
-                <li className={isPathActive('/advertise') ? 'active-item' : ''}>
-                  <Link href="/advertise">
-                    <a>
-                      <Loyalty id="icon" />
-                      <p>Anunciar</p>
-                    </a>
-                  </Link>
-                </li>
-              </ul>
-            </>
-          }
-        >
-          <img
-            src={`${STORAGE_URL}/user/${auth.user.avatar}`}
-            alt="Sua imagem"
-          />
-        </Dropdown>
-      )}
+                <ul>
+                  <li className={isPathActive('/account') ? 'active-item' : ''}>
+                    <Link href="/account">
+                      <a>
+                        <Person id="icon" />
+                        <p>Minha conta</p>
+                      </a>
+                    </Link>
+                  </li>
+                  <li
+                    className={isPathActive('/favorite') ? 'active-item' : ''}
+                  >
+                    <Link href="/favorite">
+                      <a>
+                        <Favorite id="icon" />
+                        <p>Favoritos</p>
+                      </a>
+                    </Link>
+                  </li>
+                  <li
+                    className={isPathActive('/advertise') ? 'active-item' : ''}
+                  >
+                    <Link href="/advertise">
+                      <a>
+                        <Loyalty id="icon" />
+                        <p>Anunciar</p>
+                      </a>
+                    </Link>
+                  </li>
+                </ul>
+              </>
+            }
+          >
+            <img
+              src={`${STORAGE_URL}/user/${auth.user.avatar}`}
+              alt="Sua imagem"
+            />
+          </Dropdown>
+        ))}
     </div>
   )
 }

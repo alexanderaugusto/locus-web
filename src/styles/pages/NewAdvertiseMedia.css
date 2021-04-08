@@ -1,0 +1,8 @@
+@media(max-width: 500px){
+  .new-advertise-page .new-advertise .step-4 .images{
+    margin-top: 7vh;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 10px;
+  }
+}
