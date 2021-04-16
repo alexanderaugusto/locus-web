@@ -1,13 +1,12 @@
 
 <p align="center">
-  <img alt="Travis CI" src="https://travis-ci.org/alexanderaugusto/imovel-app.svg?branch=master" />
   
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/alexanderaugusto/imovel-app?color=%2304D361">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/alexanderaugusto/imovel-web?color=%2304D361">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/alexanderaugusto/imovel-app">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/alexanderaugusto/imovel-web">
   
-  <a href="https://github.com/alexanderaugusto/imovel-app/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/alexanderaugusto/imovel-app">
+  <a href="https://github.com/alexanderaugusto/imovel-web/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/alexanderaugusto/imovel-web">
   </a>
     
    <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">  
@@ -15,7 +14,7 @@
 </p>
 
 <h4 align="center"> 
-	✅ IMovel - Concluído ✅
+	🚧 IMovel - em desenvolvimento 🚧
 </h4>
 
 <p align="center">
@@ -195,19 +194,13 @@ No mac, vamos instalar com o Homebrew.
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
-#### **Mobile**  ([React Native](http://www.reactnative.com/))
+#### **Web**  ([Next.js](https://nextjs.org))
 - **Dependências**:
-  -   **[Expo](https://expo.io/)**
-  -   **[React Navigation](https://reactnavigation.org/)**
+  -   **[ReactJS](https://pt-br.reactjs.org)**  
   -   **[Axios](https://github.com/axios/axios)**
-  -   **[Progress Steps](https://github.com/colbymillerdev/react-native-progress-steps)**
-  -   **[Expo Image Picker](https://docs.expo.io/versions/latest/sdk/imagepicker/)**
-  -   **[Swiper](https://github.com/leecade/react-native-swiper)**
-  -   **[Progress](https://github.com/oblador/react-native-progress)**
   
 - **Dependências de Desenvolvimento**:
-  -   **[Jest Expo](https://docs.expo.io/guides/testing-with-jest/)**
-  -   **[React Test Renderer](https://pt-br.reactjs.org/docs/test-renderer.html)**
+  -   **[Typescript](https://www.typescriptlang.org)**
   -   **[ESlint](https://eslint.org)**
   -   **[Prettier](https://prettier.io)**
 
