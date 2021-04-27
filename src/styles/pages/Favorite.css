@@ -1,0 +1,21 @@
+.favorite-page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.favorite-page .favorite{
+  max-width: 450px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 7vh;
+}
+
+.favorite-page .favorite h1{
+  font-size: 30px;
+  font-weight: bold;
+  color: #2C3E50;
+  text-align: center;
+}
