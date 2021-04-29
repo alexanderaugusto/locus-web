@@ -13,7 +13,18 @@ function phone(phone: string) {
   return str.replace(regex, '($1) $2-$3')
 }
 
+function formatCurrency(currency: number) {
+  if (currency === undefined || currency === null) {
+    return ''
+  }
+
+  const value = currency.toFixed(2).split('.')
+  value[0] = 'R$ ' + value[0].split(/(?=(?:...)*$)/).join('.')
+  return value.join(',')
+}
+
 export default {
   cpf,
-  phone
+  phone,
+  formatCurrency
 }
