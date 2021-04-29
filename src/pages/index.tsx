@@ -1,14 +1,40 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import { Header, FilterModal, Input, Button } from '../components'
+import inputValidation from '../utils/inputValidation'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons'
+import { useAuth } from '../contexts/auth'
+import api, { STORAGE_URL } from '../services/api'
 
 import Logo from '../assets/logo-black.png'
 
 const Home: React.FC = () => {
+  const auth = useAuth()
+  const [properties, setProperties] = useState([])
   const [filterOpen, setFilterOpen] = useState(false)
+  const [filters, setFilters] = useState({})
   const [searchText, setSearchText] = useState('')
+
+  const getProperties = async (params = {}) => {
+    const config = {
+      params
+    }
+
+    await api
+      .get('/properties', config)
+      .then(res => {
+        setProperties(res.data)
+        console.log(res.data)
+      })
+      .catch(err => {
+        console.error(err)
+      })
+  }
+
+  useEffect(() => {
+    getProperties(filters)
+  }, [auth.signed])
 
   return (
     <div>
@@ -51,6 +77,34 @@ const Home: React.FC = () => {
             </Button>
           </div>
         </form>
+        <div className="properties-grid">
+          {properties?.map(property => {
+            return (
+              <div key={property.title} className="content">
+                <div className="scroll-images">
+                  {property.images.map(image => (
+                    <div key={image.id} className="image">
+                      <img
+                        sizes="cover"
+                        src={`${STORAGE_URL}/property/${image.path}`}
+                        alt="Imagens dos imóveis"
+                      />
+                    </div>
+                  ))}
+                </div>
+
+                <div className="info-container">
+                  <p className="price">
+                    Aluguel {inputValidation.formatCurrency(property.price)}
+                  </p>
+
+                  <p className="address">{`${property.street}, ${property.neighborhood}`}</p>
+                  <p className="city">{`${property.city} (${property.state})`}</p>
+                </div>
+              </div>
+            )
+          })}
+        </div>
       </main>
     </div>
   )
