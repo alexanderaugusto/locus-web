@@ -10,22 +10,22 @@ const Advertise: React.FC = () => {
   const auth = useAuth()
   const [properties, setProperties] = useState([])
 
-  async function getProperties() {
-    await api
-      .get('/user/properties')
-      .then(res => {
-        setProperties(res.data)
-      })
-      .catch(err => {
-        console.error(err)
-      })
-  }
+  // async function getProperties() {
+  //   await api
+  //     .get('/user/properties')
+  //     .then(res => {
+  //       setProperties(res.data)
+  //     })
+  //     .catch(err => {
+  //       console.error(err)
+  //     })
+  // }
 
-  useEffect(() => {
-    if (auth.signed) {
-      getProperties()
-    }
-  }, [auth.signed])
+  // useEffect(() => {
+  //   if (auth.signed) {
+  //     getProperties()
+  //   }
+  // }, [auth.signed])
 
   return (
     <div>
@@ -41,7 +41,7 @@ const Advertise: React.FC = () => {
             title="Você não possui nenhum imóvel!!"
             description="Para cadastrar o seu primeiro imóvel, clique no botão abaixo."
             buttonText="Meu primeiro imóvel"
-            redirectTo={auth.signed ? '/advertise/new' : '/login'}
+            redirectTo="/advertise/new" /// {auth.signed ? '/advertise/new' : '/login'}
           />
         ) : (
           <div className="advertise">

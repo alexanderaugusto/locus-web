@@ -23,6 +23,7 @@ import '../styles/components/Input.css'
 import '../styles/components/InputArea.css'
 import '../styles/components/InputCheck.css'
 import '../styles/components/InputSelect.css'
+import '../styles/components/PropertyCard.css'
 import '../styles/components/StepProgress.css'
 
 import { config } from '@fortawesome/fontawesome-svg-core'
