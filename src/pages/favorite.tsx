@@ -2,30 +2,29 @@ import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import { faHeartBroken } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../contexts/auth'
-import { Header, EmptyMessage } from '../components'
-import api, { STORAGE_URL } from '../services/api'
+import { Header, EmptyMessage, PropertyCard } from '../components'
+import api from '../services/api'
 
 const Favorite: React.FC = () => {
   const auth = useAuth()
   const [favorites, setFavorites] = useState([])
 
-  // const getFavorites = async () => {
-  //   await api
-  //     .get('/user/favorites')
-  //     .then(res => {
-  //       // setFavorites(res.data)
-  //       setFavorites([])
-  //     })
-  //     .catch(err => {
-  //       console.error(err)
-  //     })
-  // }
+  const getFavorites = async () => {
+    await api
+      .get('/user/favorites')
+      .then(res => {
+        setFavorites(res.data)
+      })
+      .catch(err => {
+        console.error(err)
+      })
+  }
 
-  // useEffect(() => {
-  //   if (auth.signed) {
-  //     getFavorites()
-  //   }
-  // }, [auth.signed])
+  useEffect(() => {
+    if (auth.signed) {
+      getFavorites()
+    }
+  }, [auth.signed, favorites])
 
   return (
     <div>
@@ -36,7 +35,7 @@ const Favorite: React.FC = () => {
       <main className="favorite-page">
         <Header />
 
-        {!auth.signed || !favorites.length ? (
+        {!auth.signed || !favorites?.length ? (
           <EmptyMessage
             icon={faHeartBroken}
             title="Você ainda não possui imóveis favoritos!"
@@ -47,6 +46,16 @@ const Favorite: React.FC = () => {
         ) : (
           <div className="favorite">
             <h1>Meus Favoritos</h1>
+            <div className="properties-grid">
+              {favorites?.map(favorite => {
+                return (
+                  <PropertyCard
+                    key={`${favorite.id.toString()} - ${favorite.title}`}
+                    property={favorite}
+                  />
+                )
+              })}
+            </div>
           </div>
         )}
       </main>

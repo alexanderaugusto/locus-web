@@ -1,7 +1,9 @@
 /* eslint-disable camelcase */
-import React from 'react'
-import { STORAGE_URL } from '../services/api'
+import React, { useState } from 'react'
+import api, { STORAGE_URL } from '../services/api'
 import inputValidation from '../utils/inputValidation'
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 type ImageProps = {
   path: string
@@ -26,11 +28,40 @@ type PopertyCardProps = {
     area: number
     place: number
     animal: boolean
+    favorite?: boolean
     images: Array<ImageProps>
+    owner?: {
+      id: number
+      email: string
+      name: string
+    }
+    user_id?: number
   }
 }
 
 const PopertyCard: React.FC<PopertyCardProps> = ({ property }) => {
+  const addFavorite = async () => {
+    api
+      .put(`/user/favorite/${property.id}`, null)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.error(err)
+      })
+  }
+
+  const removeFavorite = async () => {
+    api
+      .delete(`/user/favorite/${property.id}`)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.error(err)
+      })
+  }
+
   return (
     <div className="content">
       <div className="scroll-images">
@@ -43,6 +74,27 @@ const PopertyCard: React.FC<PopertyCardProps> = ({ property }) => {
             />
           </div>
         ))}
+      </div>
+
+      <div className="favorite-container">
+        <button
+          className="btn-favorite"
+          onClick={() => {
+            property.favorite || property.favorite === undefined
+              ? removeFavorite()
+              : addFavorite()
+          }}
+        >
+          <Icon
+            id="icon"
+            icon={faHeart}
+            color={
+              property.favorite || property.favorite === undefined
+                ? '#F82F4A'
+                : '#0565FC'
+            }
+          />
+        </button>
       </div>
 
       <div className="info-container">

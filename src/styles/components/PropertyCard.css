@@ -7,17 +7,33 @@
   box-shadow: 0px 4px 8px rgba(44, 62, 80, 0.3);
   z-index: 1;
   overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .content .scroll-images {
   height: 180px;
   width: 100%;
-  background-color: blue;
+  background-color: #FFF;
 
   display: flex;
   flex-direction: row;
   overflow-x: scroll;
   overflow-y: hidden;
+}
+
+.content .scroll-images::-webkit-scrollbar {
+  width: 10px;
+}
+
+.content .scroll-images::-webkit-scrollbar-track {
+ background: transparent;
+}
+
+.content .scroll-images::-webkit-scrollbar-thumb {
+  background:rgb(170, 173, 179, 0.3);
+  border-radius: 10px;
 }
 
 .content .scroll-images .image{
@@ -30,6 +46,32 @@
   height: 180px;
   width: 100%;
   object-fit: cover;
+}
+
+.content .favorite-container {
+  position: absolute;
+  margin: 10px;
+  align-self: flex-end;
+}
+
+.content .favorite-container .btn-favorite{
+  background-color: #FFF;
+  border: 1px solid #F0F0F0;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+
+  z-index: 2;
+  color: #0565FC;
+  font-size: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+.content .favorite-container:hover{
+  filter: brightness(90%);
 }
 
 .content .info-container {

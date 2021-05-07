@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import { Header, FilterModal, Input, Button, PropertyCard } from '../components'
-import inputValidation from '../utils/inputValidation'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../contexts/auth'
-import api, { STORAGE_URL } from '../services/api'
+import api from '../services/api'
 
 import Logo from '../assets/logo-black.png'
 
@@ -33,7 +32,7 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     getProperties(filters)
-  }, [auth.signed])
+  }, [auth.signed, properties])
 
   return (
     <div>
@@ -79,7 +78,10 @@ const Home: React.FC = () => {
         <div className="properties-grid">
           {properties?.map(property => {
             return (
-              <PropertyCard key={property.id.toString()} property={property} />
+              <PropertyCard
+                key={`${property.id.toString()} - ${property.title}`}
+                property={property}
+              />
             )
           })}
         </div>

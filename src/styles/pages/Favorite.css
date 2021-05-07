@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 7vh;
+  margin-top: 8vh;
 }
 
 .favorite-page .favorite h1{
@@ -18,4 +18,15 @@
   font-weight: bold;
   color: #2C3E50;
   text-align: center;
+}
+
+.favorite-page .favorite .properties-grid {
+  width: 80%;
+  margin-top: 30px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 25vw);
+  grid-auto-columns: minmax(350px, auto);
+  grid-gap: 2vw;
+  justify-content: center;
 }
