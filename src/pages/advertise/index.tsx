@@ -4,28 +4,29 @@ import Link from 'next/link'
 import { Button, Header, EmptyMessage } from '../../components'
 import { faHouseDamage } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../../contexts/auth'
-import api from '../../services/api'
+import api, { STORAGE_URL } from '../../services/api'
+import inputValidation from '../../utils/inputValidation'
 
 const Advertise: React.FC = () => {
   const auth = useAuth()
   const [properties, setProperties] = useState([])
 
-  // async function getProperties() {
-  //   await api
-  //     .get('/user/properties')
-  //     .then(res => {
-  //       setProperties(res.data)
-  //     })
-  //     .catch(err => {
-  //       console.error(err)
-  //     })
-  // }
+  async function getProperties() {
+    await api
+      .get('/user/properties')
+      .then(res => {
+        setProperties(res.data)
+      })
+      .catch(err => {
+        console.error(err)
+      })
+  }
 
-  // useEffect(() => {
-  //   if (auth.signed) {
-  //     getProperties()
-  //   }
-  // }, [auth.signed])
+  useEffect(() => {
+    if (auth.signed) {
+      getProperties()
+    }
+  }, [auth.signed])
 
   return (
     <div>
@@ -52,6 +53,32 @@ const Advertise: React.FC = () => {
                   <Button>Anunciar</Button>
                 </a>
               </Link>
+            </div>
+            <div className="properties-grid">
+              {properties?.map(property => {
+                return (
+                  <div
+                    className="properties-content"
+                    key={`${property.id.toString()} - ${property.title}`}
+                  >
+                    <div className="image-container">
+                      <img
+                        sizes="cover"
+                        src={`${STORAGE_URL}/property/${property.images[0]?.path}`}
+                        alt="Imagens dos imóveis"
+                      />
+                    </div>
+
+                    <div className="details-container">
+                      <div className="infos-container">
+                        <h1>{property.title}</h1>
+                        <p>{property.description}</p>
+                      </div>
+                      <p>{inputValidation.formatCurrency(property.price)}</p>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           </div>
         )}

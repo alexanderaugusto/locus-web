@@ -6,8 +6,7 @@
 
 .advertise-page .advertise{
   width: 100%;
-  padding-left: 7vw;
-  padding-right: 7vw;
+  padding: 0 3vw;
 }
 
 .advertise-page .advertise .title{
@@ -28,4 +27,84 @@
 .advertise-page .advertise .title button{
   min-width: 150px;
   height: 40px;
+}
+
+.advertise-page .properties-grid {
+  width: 100%;
+  margin-top: 30px;
+
+  display: grid;
+  grid-template-columns: repeat(2, 46vw);
+  grid-auto-columns: minmax(500px, auto);
+  grid-gap: 2vw;
+  justify-content: space-between;
+}
+
+.advertise-page .properties-grid .properties-content {
+  width: 100%;
+  min-height: 220px;
+
+  background-color: #FFF;
+  border-radius: 20px;
+  box-shadow: 0px 4px 8px rgba(44, 62, 80, 0.3);
+  z-index: 1;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.advertise-page .properties-grid  .properties-content .image-container {
+  height: 220px;
+  width: 60%;
+  min-width: 20vw;
+  background-color: #FFF;
+}
+
+.advertise-page .properties-grid  .properties-content .image-container img{
+  height: 220px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.advertise-page .properties-grid  .properties-content .details-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 12px;
+}
+
+.advertise-page .properties-grid  .properties-content .details-container .infos-container h1{
+  font-size: 21px;
+  font-weight: 500;
+  color: #2C3E50;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.advertise-page .properties-grid  .properties-content .details-container .infos-container p{
+  font-size: 16px;
+  font-weight: 400;
+  text-align: justify;
+  color: #506163;
+  padding-top: 8px;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+.advertise-page .properties-grid  .properties-content .details-container p{
+  font-size: 18px;
+  font-weight: bold;
+  color: green;
+  margin: 5px;
+  align-self: flex-end;
 }
