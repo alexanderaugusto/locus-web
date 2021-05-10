@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Head from 'next/head'
 import { faHeartBroken } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../contexts/auth'
@@ -9,7 +9,7 @@ const Favorite: React.FC = () => {
   const auth = useAuth()
   const [favorites, setFavorites] = useState([])
 
-  const getFavorites = async () => {
+  const getFavorites = useCallback(async () => {
     await api
       .get('/user/favorites')
       .then(res => {
@@ -18,13 +18,13 @@ const Favorite: React.FC = () => {
       .catch(err => {
         console.error(err)
       })
-  }
+  }, [favorites])
 
   useEffect(() => {
     if (auth.signed) {
       getFavorites()
     }
-  }, [auth.signed, favorites])
+  }, [auth.signed])
 
   return (
     <div>

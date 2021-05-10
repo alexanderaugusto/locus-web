@@ -6,8 +6,38 @@
 
 .advertise-details-page .images-section {
   width: 100%;
-  height: 250px;
-  background-color: blue;
+  height: 350px;
+  background-color: #FFF;
+
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.advertise-details-page .images-section::-webkit-scrollbar {
+  width: 30px;
+}
+
+.advertise-details-page .images-section::-webkit-scrollbar-track {
+ background: transparent;
+}
+
+.advertise-details-page .images-section::-webkit-scrollbar-thumb {
+  background:rgb(170, 173, 179, 0.3);
+  border-radius: 10px;
+}
+
+.advertise-details-page .images-section .image{
+  height: 350px;
+  /* max-width: 100%; */
+  /* min-width: 25vw; */
+}
+
+.advertise-details-page .images-section .image img{
+  height: 350px;
+  /* width: 100%; */
+  object-fit: cover;
 }
 
 .advertise-details-page .info-container {

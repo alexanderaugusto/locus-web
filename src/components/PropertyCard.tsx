@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 import React from 'react'
 import { useRouter } from 'next/router'
+import { useAuth } from '../contexts/auth'
 import api, { STORAGE_URL } from '../services/api'
 import inputValidation from '../utils/inputValidation'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
@@ -47,6 +48,7 @@ type PopertyCardProps = {
 
 const PopertyCard: React.FC<PopertyCardProps> = ({ property }) => {
   const router = useRouter()
+  const auth = useAuth()
 
   const addFavorite = async () => {
     api
@@ -84,26 +86,28 @@ const PopertyCard: React.FC<PopertyCardProps> = ({ property }) => {
         ))}
       </div>
 
-      <div className="favorite-container">
-        <button
-          className="btn-favorite"
-          onClick={() => {
-            property.favorite || property.favorite === undefined
-              ? removeFavorite()
-              : addFavorite()
-          }}
-        >
-          <Icon
-            id="icon"
-            icon={faHeart}
-            color={
+      {auth.signed && (
+        <div className="favorite-container">
+          <button
+            className="btn-favorite"
+            onClick={() => {
               property.favorite || property.favorite === undefined
-                ? '#F82F4A'
-                : '#0565FC'
-            }
-          />
-        </button>
-      </div>
+                ? removeFavorite()
+                : addFavorite()
+            }}
+          >
+            <Icon
+              id="icon"
+              icon={faHeart}
+              color={
+                property.favorite || property.favorite === undefined
+                  ? '#F82F4A'
+                  : '#0565FC'
+              }
+            />
+          </button>
+        </div>
+      )}
 
       <div className="info-container">
         <p className="price">
@@ -113,18 +117,20 @@ const PopertyCard: React.FC<PopertyCardProps> = ({ property }) => {
         <p className="address">{`${property.street}, ${property.neighborhood}`}</p>
         <p className="city">{`${property.city} (${property.state})`}</p>
 
-        <a
-          className="more-details"
-          onClick={() => {
-            router.push({
-              pathname: '/advertise/details',
-              query: { data: JSON.stringify(property) }
-            })
-          }}
-        >
-          Mais detalhes
-          <Icon id="icon" icon={faArrowAltCircleRight} />
-        </a>
+        {auth.signed && (
+          <a
+            className="more-details"
+            onClick={() => {
+              router.push({
+                pathname: '/advertise/details',
+                query: { data: JSON.stringify(property) }
+              })
+            }}
+          >
+            Mais detalhes
+            <Icon id="icon" icon={faArrowAltCircleRight} />
+          </a>
+        )}
       </div>
     </div>
   )

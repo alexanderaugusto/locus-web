@@ -45,7 +45,17 @@ const AdvertiseDetails: React.FC = () => {
       <main className="advertise-details-page">
         <Header goBack />
 
-        <div className="images-section"></div>
+        <div className="images-section">
+          {property.images.map(image => (
+            <div key={image.id} className="image">
+              <img
+                sizes="cover"
+                src={`${STORAGE_URL}/property/${image.path}`}
+                alt="Imagens dos imóveis"
+              />
+            </div>
+          ))}
+        </div>
 
         <div className="info-container">
           <div className="info-property">
