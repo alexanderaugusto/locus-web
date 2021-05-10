@@ -1,9 +1,13 @@
 /* eslint-disable camelcase */
-import React, { useState } from 'react'
+import React from 'react'
+import { useRouter } from 'next/router'
 import api, { STORAGE_URL } from '../services/api'
 import inputValidation from '../utils/inputValidation'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import {
+  faHeart,
+  faArrowAltCircleRight
+} from '@fortawesome/free-solid-svg-icons'
 
 type ImageProps = {
   path: string
@@ -29,8 +33,10 @@ type PopertyCardProps = {
     place: number
     animal: boolean
     favorite?: boolean
-    images: Array<ImageProps>
+    images?: Array<ImageProps>
     owner?: {
+      avatar: string
+      phone: string
       id: number
       email: string
       name: string
@@ -40,6 +46,8 @@ type PopertyCardProps = {
 }
 
 const PopertyCard: React.FC<PopertyCardProps> = ({ property }) => {
+  const router = useRouter()
+
   const addFavorite = async () => {
     api
       .put(`/user/favorite/${property.id}`, null)
@@ -104,6 +112,19 @@ const PopertyCard: React.FC<PopertyCardProps> = ({ property }) => {
 
         <p className="address">{`${property.street}, ${property.neighborhood}`}</p>
         <p className="city">{`${property.city} (${property.state})`}</p>
+
+        <a
+          className="more-details"
+          onClick={() => {
+            router.push({
+              pathname: '/advertise/details',
+              query: { data: JSON.stringify(property) }
+            })
+          }}
+        >
+          Mais detalhes
+          <Icon id="icon" icon={faArrowAltCircleRight} />
+        </a>
       </div>
     </div>
   )

@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Head from 'next/head'
 import { Header, FilterModal, Input, Button, PropertyCard } from '../components'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../contexts/auth'
 import api from '../services/api'
-
 import Logo from '../assets/logo-black.png'
 
 const Home: React.FC = () => {
@@ -15,24 +14,27 @@ const Home: React.FC = () => {
   const [filters, setFilters] = useState({})
   const [searchText, setSearchText] = useState('')
 
-  const getProperties = async (params = {}) => {
-    const config = {
-      params
-    }
+  const getProperties = useCallback(
+    async (params = {}) => {
+      const config = {
+        params
+      }
 
-    await api
-      .get('/properties', config)
-      .then(res => {
-        setProperties(res.data)
-      })
-      .catch(err => {
-        console.error(err)
-      })
-  }
+      await api
+        .get('/properties', config)
+        .then(res => {
+          setProperties(res.data)
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    },
+    [properties]
+  )
 
   useEffect(() => {
     getProperties(filters)
-  }, [auth.signed, properties])
+  }, [auth.signed])
 
   return (
     <div>

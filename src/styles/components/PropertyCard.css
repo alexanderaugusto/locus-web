@@ -69,6 +69,7 @@
   align-items: center;
   justify-content: center;
   transition: all 0.3s;
+  cursor: pointer;
 }
 .content .favorite-container:hover{
   filter: brightness(90%);
@@ -100,4 +101,23 @@
 
 .content .info-container .city{
   padding-top: 0px;
+}
+
+.content .info-container .more-details{
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+
+  color: #2C3E50;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.content .info-container .more-details:hover{
+filter: brightness(80%);
+}
+
+.content .info-container .more-details #icon{
+  margin-left: 5px;
 }
