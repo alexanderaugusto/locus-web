@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 import React from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useAuth } from '../contexts/auth'
 import api, { STORAGE_URL } from '../services/api'
@@ -47,8 +48,8 @@ type PopertyCardProps = {
 }
 
 const PopertyCard: React.FC<PopertyCardProps> = ({ property }) => {
-  const router = useRouter()
   const auth = useAuth()
+  const router = useRouter()
 
   const addFavorite = async () => {
     api
@@ -86,28 +87,32 @@ const PopertyCard: React.FC<PopertyCardProps> = ({ property }) => {
         ))}
       </div>
 
-      {auth.signed && (
-        <div className="favorite-container">
-          <button
-            className="btn-favorite"
-            onClick={() => {
-              property.favorite || property.favorite === undefined
-                ? removeFavorite()
-                : addFavorite()
-            }}
-          >
-            <Icon
-              id="icon"
-              icon={faHeart}
-              color={
-                property.favorite || property.favorite === undefined
-                  ? '#F82F4A'
-                  : '#0565FC'
+      <div className="favorite-container">
+        <button
+          className="btn-favorite"
+          onClick={() => {
+            if (!auth.signed) {
+              router.push('/login')
+            } else {
+              if (property.favorite || property.favorite === undefined) {
+                removeFavorite()
+              } else {
+                addFavorite()
               }
-            />
-          </button>
-        </div>
-      )}
+            }
+          }}
+        >
+          <Icon
+            id="icon"
+            icon={faHeart}
+            color={
+              property.favorite || property.favorite === undefined
+                ? '#F82F4A'
+                : '#0565FC'
+            }
+          />
+        </button>
+      </div>
 
       <div className="info-container">
         <p className="price">
@@ -117,20 +122,12 @@ const PopertyCard: React.FC<PopertyCardProps> = ({ property }) => {
         <p className="address">{`${property.street}, ${property.neighborhood}`}</p>
         <p className="city">{`${property.city} (${property.state})`}</p>
 
-        {auth.signed && (
-          <a
-            className="more-details"
-            onClick={() => {
-              router.push({
-                pathname: '/advertise/details',
-                query: { data: JSON.stringify(property) }
-              })
-            }}
-          >
+        <Link href={`/advertise/${property.id}`}>
+          <a className="more-details">
             Mais detalhes
             <Icon id="icon" icon={faArrowAltCircleRight} />
           </a>
-        )}
+        </Link>
       </div>
     </div>
   )
