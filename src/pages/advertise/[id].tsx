@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+/* eslint-disable camelcase */
+import React, { useEffect, useCallback, useState } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import api, { STORAGE_URL } from '../../services/api'
@@ -15,11 +16,58 @@ import {
   faMapMarkedAlt
 } from '@fortawesome/free-solid-svg-icons'
 
+type PropertyImageProps = {
+  id: number
+  path: string
+}
+
+type UserProps = {
+  id: number
+  name: string
+  email: string
+  phone: string
+  avatar: string
+}
+
+type PropertyProps = {
+  id: number
+  title: string
+  description: string
+  street: string
+  neighborhood: string
+  city: string
+  state: string
+  bedrooms: number
+  bathrooms: number
+  area: number
+  animal: boolean
+  price: number
+  images: Array<PropertyImageProps>
+  owner: UserProps
+}
+
 const AdvertiseDetails: React.FC = () => {
   const router = useRouter()
   const [message, setMessage] = useState('')
-  const property = JSON.parse(router.query.data as string)
-  console.log(property)
+  const [property, setProperty] = useState<PropertyProps>(null)
+  const { id: property_id } = router.query
+
+  const getProperty = useCallback(async () => {
+    await api
+      .get(`/user/property/${property_id}`)
+      .then(res => {
+        setProperty(res.data)
+      })
+      .catch(err => {
+        console.error(err)
+      })
+  }, [property_id])
+
+  useEffect(() => {
+    if (property_id) {
+      getProperty()
+    }
+  }, [property_id, getProperty])
 
   const handleContact = async () => {
     const data = {
@@ -28,12 +76,16 @@ const AdvertiseDetails: React.FC = () => {
 
     await api
       .post(`/user/property/${router.query?.id}/owner/contact`, data)
-      .then(res => {
+      .then(() => {
         console.log('ENVIOU')
       })
       .catch(err => {
         console.error(err)
       })
+  }
+
+  if (!property) {
+    return null
   }
 
   return (
