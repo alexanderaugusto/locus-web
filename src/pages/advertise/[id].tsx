@@ -4,6 +4,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import api, { STORAGE_URL } from '../../services/api'
 import { Header, InputArea, Button } from '../../components'
+import { useAuth } from '../../contexts/auth'
 import inputValidation from '../../utils/inputValidation'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import {
@@ -47,6 +48,7 @@ type PropertyProps = {
 }
 
 const AdvertiseDetails: React.FC = () => {
+  const auth = useAuth()
   const router = useRouter()
   const [message, setMessage] = useState('')
   const [property, setProperty] = useState<PropertyProps>(null)
@@ -186,7 +188,16 @@ const AdvertiseDetails: React.FC = () => {
                 value={message}
                 onChange={e => setMessage(e.target.value)}
               />
-              <Button className="contact-btn" onClick={handleContact}>
+              <Button
+                className="contact-btn"
+                onClick={() => {
+                  if (auth.signed) {
+                    handleContact()
+                  } else {
+                    router.push(`/login?redirect=/advertise/${property.id}`)
+                  }
+                }}
+              >
                 Enviar
               </Button>
             </div>

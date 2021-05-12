@@ -22,7 +22,13 @@ const Login: React.FC = () => {
     await auth
       .signIn(email, password)
       .then(() => {
-        router.push('/')
+        const { redirect } = router.query
+
+        if (redirect) {
+          router.push(redirect.toString())
+        } else {
+          router.push('/')
+        }
       })
       .catch(err => {
         const type = err.response.status >= 500 ? 'error' : 'warning'
