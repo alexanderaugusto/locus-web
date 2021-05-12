@@ -41,3 +41,7 @@ a{
   justify-content: center;
   align-items: center;
 }
+
+main{
+  padding-bottom: 20px;
+}
