@@ -4,12 +4,14 @@ import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: IconDefinition
+  iconSearch?: IconDefinition
   label?: string
   labelInside?: string
 }
 
 const Input: React.FC<InputProps> = ({
   icon,
+  iconSearch,
   label,
   labelInside,
   ...inputProps
@@ -21,6 +23,7 @@ const Input: React.FC<InputProps> = ({
         {icon && <Icon id="icon" icon={icon} />}
         {labelInside && <label>{labelInside}</label>}
         <input {...inputProps} autoComplete="new-password" />
+        {iconSearch && <Icon id="icon" icon={iconSearch} />}
       </div>
     </div>
   )

@@ -7,7 +7,6 @@ import { useAuth } from '../../contexts/auth'
 import { useAlert } from '../../contexts/alert'
 import api, { STORAGE_URL } from '../../services/api'
 import inputValidation from '../../utils/inputValidation'
-import Router from 'next/router'
 
 const Advertise: React.FC = () => {
   const auth = useAuth()

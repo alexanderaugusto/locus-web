@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import Head from 'next/head'
 import { Header, FilterModal, Input, Button, PropertyCard } from '../components'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
-import { faFilter } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../contexts/auth'
 import api from '../services/api'
 import Logo from '../assets/logo-black.png'
@@ -11,7 +11,7 @@ const Home: React.FC = () => {
   const auth = useAuth()
   const [properties, setProperties] = useState([])
   const [filterOpen, setFilterOpen] = useState(false)
-  const [searchText, setSearchText] = useState('')
+  const [searchText] = useState('Santa Rita do Sapucaí, MG')
 
   const getProperties = useCallback(
     async filters => {
@@ -47,17 +47,18 @@ const Home: React.FC = () => {
         <FilterModal
           isOpen={filterOpen}
           onToggle={() => setFilterOpen(false)}
-          applyFilter={filters => getProperties(filters)}
+          applyFilter={filters => {
+            getProperties(filters)
+          }}
         />
 
         <form className="home-form">
           <img src={Logo} alt="IMovel" />
           <h1>Encontre o imóvel ideal para você!</h1>
           <Input
-            // icon={faSearch}
+            iconSearch={faSearch}
             placeholder="Pesquise por localidade..."
             value={searchText}
-            onChange={e => setSearchText(e.target.value)}
           />
           <div className="filter">
             <div className="filter-location">
