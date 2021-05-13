@@ -1,0 +1,20 @@
+@media(max-width: 1100px){
+  .content .scroll-images .image {
+    min-width: 300px;
+  }
+}
+
+@media(max-width: 960px){
+  .content .scroll-images .image {
+    min-width: 45vw;
+  }
+}
+
+@media(max-width: 630px){
+  .content {
+    width: 70vw;
+  }
+  .content .scroll-images .image {
+    min-width: 70vw;
+  }
+}
