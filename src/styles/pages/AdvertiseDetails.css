@@ -2,17 +2,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0;
 }
 
 .advertise-details-page .images-section {
   width: 100%;
-  height: 350px;
+  height: 315px;
   background-color: #FFF;
 
-  display: flex;
-  flex-direction: row;
-  overflow-x: scroll;
+  display: grid;
+  grid-auto-flow: column;
   overflow-y: hidden;
+  overflow-x: auto;
 }
 
 .advertise-details-page .images-section::-webkit-scrollbar {
@@ -28,29 +29,21 @@
   border-radius: 10px;
 }
 
-.advertise-details-page .images-section .image{
-  height: 350px;
-  /* max-width: 100%; */
-  /* min-width: 25vw; */
-}
-
 .advertise-details-page .images-section .image img{
-  height: 350px;
-  /* width: 100%; */
+  height: 300px;
   object-fit: cover;
 }
 
 .advertise-details-page .info-container {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 /* Property informations */
 .advertise-details-page .info-container .info-property {
   display: flex;
   flex-direction: column;
-  padding: 20px 36px;
-  width: 50%;
+  padding: 25px 36px;
   border-right: 2px solid #AAADB3;
 }
 
@@ -73,7 +66,7 @@
   font-size: 22px;
   font-weight: 500;
   color: #2C3E50;
-  padding-top: 18px;
+  padding-top: 26px;
   padding-bottom: 8px;
 }
 
@@ -92,7 +85,7 @@
   align-self: center;
   justify-content: space-between;
   width: 80%;
-  padding: 20px 0;
+  padding: 25px 0;
 }
 
 .advertise-details-page .info-container .info-property .icons-container .icon-info {
@@ -132,8 +125,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px 36px;
-  width: 50%;
+  padding: 25px 36px;
 }
 
 .advertise-details-page .info-container .info-owner .owner-container {
@@ -143,6 +135,7 @@
   justify-content: center;
 
   width: 100%;
+  padding: 20px 0;
 }
 
 .advertise-details-page .info-container .info-owner .owner-container .avatar {
@@ -194,7 +187,7 @@
 
 .advertise-details-page .info-container .info-owner .contact-container .input-area textarea{
   border-radius: 20px;
-  height: 130px;
+  height: 120px;
 }
 
 .advertise-details-page .info-container .info-owner .contact-container .contact-btn{
