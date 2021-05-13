@@ -60,6 +60,7 @@ const FilterModal: React.FC<FilterModalProps> = ({
 
   function _applyFilter() {
     applyFilter(options)
+    onToggle()
   }
 
   function resetFilter() {

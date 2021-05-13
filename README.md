@@ -42,8 +42,8 @@ IMovel - é uma forma de conectar clientes e proprietários, tornando a escolha 
 	  - [x] Editar dados	  
   - Imóveis:
 	  - [x] Cadastrar 
-	  - [ ] Listar
-	  - [ ] Favoritar  
+	  - [x] Listar
+	  - [x] Favoritar  
 	  - [ ] Pesquisar
     - [ ] Deletar  
 ---
