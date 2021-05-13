@@ -14,7 +14,7 @@
 </p>
 
 <h4 align="center"> 
-	🚧 IMovel - em desenvolvimento 🚧
+	✅ IMovel - Concluído ✅
 </h4>
 
 <p align="center">
@@ -44,8 +44,8 @@ IMovel - é uma forma de conectar clientes e proprietários, tornando a escolha 
 	  - [x] Cadastrar 
 	  - [x] Listar
 	  - [x] Favoritar  
-	  - [ ] Pesquisar
-    - [ ] Deletar  
+	  - [x] Pesquisar
+    - [x] Deletar  
 ---
 
 ## 🚀 Como executar o projeto
