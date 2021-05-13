@@ -11,7 +11,7 @@
 
 .advertise-page .advertise .title{
   display: flex;
-  justify-content: space-between;
+  align-items: center;
   margin-top: 7vh;
   margin-bottom: 7vh;
 }
@@ -22,6 +22,15 @@
   font-weight: bold;
   color: #2C3E50;
   text-align: center;
+  margin-left: 120px;
+}
+
+.advertise-page .advertise .title .delete-btn {
+  padding-right: 12px;
+}
+
+.advertise-page .advertise .title .delete-btn button{
+  background-color: #F82F4A;
 }
 
 .advertise-page .advertise .title button{
@@ -52,6 +61,7 @@
 
   display: flex;
   flex-direction: row;
+  cursor: pointer;
 }
 
 .advertise-page .properties-grid  .properties-content .image-container {
