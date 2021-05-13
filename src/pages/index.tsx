@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import Head from 'next/head'
 import { Header, FilterModal, Input, Button, PropertyCard } from '../components'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
-import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons'
+import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../contexts/auth'
 import api from '../services/api'
 import Logo from '../assets/logo-black.png'
@@ -11,13 +11,12 @@ const Home: React.FC = () => {
   const auth = useAuth()
   const [properties, setProperties] = useState([])
   const [filterOpen, setFilterOpen] = useState(false)
-  const [filters, setFilters] = useState({})
   const [searchText, setSearchText] = useState('')
 
   const getProperties = useCallback(
-    async (params = {}) => {
+    async filters => {
       const config = {
-        params
+        params: filters
       }
 
       await api
@@ -33,7 +32,7 @@ const Home: React.FC = () => {
   )
 
   useEffect(() => {
-    getProperties(filters)
+    getProperties({})
   }, [auth.signed])
 
   return (
@@ -48,7 +47,7 @@ const Home: React.FC = () => {
         <FilterModal
           isOpen={filterOpen}
           onToggle={() => setFilterOpen(false)}
-          applyFilter={options => console.log(options)}
+          applyFilter={filters => getProperties(filters)}
         />
 
         <form className="home-form">
