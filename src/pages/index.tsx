@@ -31,6 +31,10 @@ const Home: React.FC = () => {
     [properties]
   )
 
+  const onChangeFavorite = () => {
+    getProperties({})
+  }
+
   useEffect(() => {
     getProperties({})
   }, [auth.signed])
@@ -59,6 +63,7 @@ const Home: React.FC = () => {
             iconSearch={faSearch}
             placeholder="Pesquise por localidade..."
             value={searchText}
+            readOnly={true}
           />
           <div className="filter">
             <div className="filter-location">
@@ -83,6 +88,7 @@ const Home: React.FC = () => {
               <PropertyCard
                 key={`${property.id.toString()} - ${property.title}`}
                 property={property}
+                onChangeFavorite={onChangeFavorite}
               />
             )
           })}

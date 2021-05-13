@@ -45,17 +45,23 @@ type PopertyCardProps = {
     }
     user_id?: number
   }
+  onChangeFavorite: () => void
 }
 
-const PopertyCard: React.FC<PopertyCardProps> = ({ property }) => {
+const PopertyCard: React.FC<PopertyCardProps> = ({
+  property,
+  onChangeFavorite
+}) => {
   const auth = useAuth()
   const router = useRouter()
 
   const addFavorite = async () => {
     api
       .put(`/user/favorite/${property.id}`, null)
-      .then(res => {
-        console.log(res)
+      .then(() => {
+        if (onChangeFavorite) {
+          onChangeFavorite()
+        }
       })
       .catch(err => {
         console.error(err)
@@ -65,8 +71,10 @@ const PopertyCard: React.FC<PopertyCardProps> = ({ property }) => {
   const removeFavorite = async () => {
     api
       .delete(`/user/favorite/${property.id}`)
-      .then(res => {
-        console.log(res)
+      .then(() => {
+        if (onChangeFavorite) {
+          onChangeFavorite()
+        }
       })
       .catch(err => {
         console.error(err)

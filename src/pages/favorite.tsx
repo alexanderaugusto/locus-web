@@ -20,6 +20,10 @@ const Favorite: React.FC = () => {
       })
   }, [favorites])
 
+  const onChangeFavorite = () => {
+    getFavorites()
+  }
+
   useEffect(() => {
     if (auth.signed) {
       getFavorites()
@@ -52,6 +56,7 @@ const Favorite: React.FC = () => {
                   <PropertyCard
                     key={`${favorite.id.toString()} - ${favorite.title}`}
                     property={favorite}
+                    onChangeFavorite={onChangeFavorite}
                   />
                 )
               })}
