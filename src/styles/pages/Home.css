@@ -69,13 +69,12 @@
 }
 
 .home-page .properties-grid {
-  width: 90%;
-  margin-top: 30px;
+  width: 100%;
+  margin: 35px 10px;
 
   display: grid;
   grid-template-columns: repeat(3, 25vw);
-  grid-auto-columns: minmax(350px, auto);
-  grid-gap: 2vw;
+  grid-gap: 35px;
   justify-content: center;
 }
 

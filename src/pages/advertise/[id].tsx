@@ -103,6 +103,9 @@ const AdvertiseDetails: React.FC = () => {
           {property.images.map(image => (
             <div key={image.id} className="image">
               <img
+                style={{
+                  minWidth: property.images.length <= 2 ? '50vw' : 'unset'
+                }}
                 sizes="cover"
                 src={`${STORAGE_URL}/property/${image.path}`}
                 alt="Imagens dos imóveis"
