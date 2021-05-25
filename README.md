@@ -187,7 +187,17 @@ No mac, vamos instalar com o Homebrew.
 
     # Abra seu browser favorito e acesse http://localhost:3000.
    ```
+   
+##### 🧭 Rodando os testes - Cypress
 
+   ```bash
+    # Abrir cypress pela linha de comando:
+    $ ./node_modules/.bin/cypress open
+
+    # Rodar specs por linha de comando:
+    $ ./node_modules/.bin/cypress run --spec 'cypress/integration/Imovel/**/'
+
+   ```
 ---
 
 ## 🛠 Tecnologias
@@ -198,11 +208,15 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - **Dependências**:
   -   **[ReactJS](https://pt-br.reactjs.org)**  
   -   **[Axios](https://github.com/axios/axios)**
+  -   **[React Dropzone](https://react-dropzone.js.org)**
+  -   **[Next Images](https://github.com/twopluszero/next-images)**
   
 - **Dependências de Desenvolvimento**:
   -   **[Typescript](https://www.typescriptlang.org)**
   -   **[ESlint](https://eslint.org)**
   -   **[Prettier](https://prettier.io)**
+  -   **[Cypress](https://www.cypress.io)**
+  -   **[Mochawesome](https://github.com/adamgruber/mochawesome)**
 
 Veja o arquivo  [package.json](https://github.com/alexanderaugusto/imovel-web/blob/master/package.json)
 
