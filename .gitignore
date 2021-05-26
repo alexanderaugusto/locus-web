@@ -33,5 +33,7 @@ yarn-error.log*
 # vercel
 .vercel
 
-cypress/reports
-cypress/videos
+cypress/reports/*
+cypress/videos/*
+cypress/videos/*
+mochawesome-report
