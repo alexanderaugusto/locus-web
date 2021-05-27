@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import api, { STORAGE_URL } from '../../services/api'
 import { Header, InputArea, Button } from '../../components'
 import { useAuth } from '../../contexts/auth'
+import { useAlert } from '../../contexts/alert'
 import inputValidation from '../../utils/inputValidation'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import {
@@ -49,6 +50,7 @@ type PropertyProps = {
 
 const AdvertiseDetails: React.FC = () => {
   const auth = useAuth()
+  const alert = useAlert()
   const router = useRouter()
   const [message, setMessage] = useState('')
   const [property, setProperty] = useState<PropertyProps>(null)
@@ -79,10 +81,17 @@ const AdvertiseDetails: React.FC = () => {
     await api
       .post(`/user/property/${router.query?.id}/owner/contact`, data)
       .then(() => {
-        console.log('ENVIOU')
+        const type = 'success'
+        const title = 'Deu tudo certo :D'
+        const message = 'Um e-mail foi enviado ao dono do imóvel.'
+        alert.show(type, title, message)
       })
       .catch(err => {
         console.error(err)
+        const type = err.response.status >= 500 ? 'error' : 'warning'
+        const title = 'Algo deu errado :('
+        const message = err.response?.data.message
+        alert.show(type, title, message)
       })
   }
 
