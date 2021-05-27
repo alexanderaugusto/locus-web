@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "email": "user@imovel.com",
+  "password": "$2a$08$FH9bB7yIXCrXEVu/cWvwue5xXjdMm.ypv93vMphuaSz9Y.LG/7xgy",
+  "name": "IMovel User",
+  "cpf": "111.111.111-00",
+  "phone": "(35) 9999-9999",
+  "avatar": "default-avatar.png",
+  "updatedAt": "2021-05-27T00:35:17.524Z",
+  "createdAt": "2021-05-27T00:35:17.524Z"
+}

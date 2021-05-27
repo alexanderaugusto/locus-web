@@ -1,0 +1,21 @@
+{
+  "id": 15,
+  "user_id": 2,
+  "title": "imovel title",
+  "description": "imovel description",
+  "street": "imovel street",
+  "neighborhood": "imovel neighborhood",
+  "city": "imovel city",
+  "state": "imovel state",
+  "country": "imovel country",
+  "price": "1000.00",
+  "bedrooms": "2",
+  "bathrooms": "1",
+  "area": "400",
+  "place": "2",
+  "animal": false,
+  "type": "Casa",
+  "updatedAt": "2021-05-27T01:09:09.082Z",
+  "createdAt": "2021-05-27T01:09:09.082Z",
+  "images": []
+}
