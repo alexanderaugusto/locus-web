@@ -8,7 +8,7 @@
     "start": "next start",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "cypress:report": "npx mochawesome-merge \"cypress/reports/*.json\" > mochawesome.json && npx marge mochawesome.json && rm -rf mochawesome.json"
+    "cypress:report": "npx mochawesome-merge \"cypress/reports/*.json\" > mochawesome.json && npx marge mochawesome.json && rm -rf mochawesome.json && rm -rf cypress/reports/*.json"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
