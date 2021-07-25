@@ -23,8 +23,16 @@ function formatCurrency(currency: number) {
   return value.join(',')
 }
 
+const formatZipcode = text => {
+  const regex = /^([\d]{2})\.*([\d]{3})-*([\d]{3})/
+  const str = text.replace(/[^0-9]/g, '').slice(0, 8)
+
+  return str.replace(regex, '$1$2-$3')
+}
+
 export default {
   cpf,
   phone,
-  formatCurrency
+  formatCurrency,
+  formatZipcode
 }

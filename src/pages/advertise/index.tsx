@@ -45,7 +45,7 @@ const Advertise: React.FC = () => {
 
   const removeProperty = async item => {
     api
-      .delete(`/user/property/${item.id}`)
+      .delete(`/property/${item.id}`)
       .then(() => {
         const title = 'Sucesso :)'
         const message = 'Propriedade apagada com sucesso!'

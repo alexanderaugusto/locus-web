@@ -15,6 +15,7 @@ import {
 } from '../../components'
 import states from '../../constants/states'
 import types from '../../constants/types'
+import inputValidation from '../../utils/inputValidation'
 
 const NewAdvertise: React.FC = () => {
   const alert = useAlert()
@@ -22,20 +23,25 @@ const NewAdvertise: React.FC = () => {
   const [data, setData] = useState({
     title: '',
     description: '',
-    street: '',
-    neighborhood: '',
-    city: '',
-    state: 'MG',
-    country: 'Brasil',
     price: '',
     bedrooms: '',
     bathrooms: '',
     area: '',
     place: '',
+    garage: '',
     animal: 'true',
     type: 'Casa',
-    images: []
+    images: [],
+    street: '',
+    neighborhood: '',
+    number: '',
+    city: '',
+    state: 'MG',
+    country: 'Brasil',
+    zipcode: ''
   })
+
+  console.log(router)
 
   function onChange(type: string, value: string) {
     setData({ ...data, [type]: value })
@@ -61,28 +67,34 @@ const NewAdvertise: React.FC = () => {
     }
 
     const formData = new FormData()
+    const address = {
+      street: data.street,
+      neighborhood: data.neighborhood,
+      number: parseInt(data.number, 10),
+      city: data.city,
+      state: data.state,
+      country: data.country,
+      zipcode: data.zipcode
+    }
 
     formData.append('title', data.title)
     formData.append('description', data.description)
-    formData.append('street', data.street)
-    formData.append('neighborhood', data.neighborhood)
-    formData.append('city', data.city)
-    formData.append('state', data.state)
-    formData.append('country', data.country)
     formData.append('price', data.price.replace(',', '.'))
     formData.append('bedrooms', data.bedrooms)
     formData.append('bathrooms', data.bathrooms)
     formData.append('area', data.area.replace(',', '.'))
     formData.append('place', data.place)
+    formData.append('garage', data.garage)
     formData.append('animal', data.animal)
     formData.append('type', data.type)
+    formData.append('address', JSON.stringify(address))
 
     data.images.forEach(image => {
       formData.append('files', image)
     })
 
     await api
-      .post('/user/property', formData, config)
+      .post('/property', formData, config)
       .then(() => {
         router.push('/advertise')
       })
@@ -130,6 +142,16 @@ const NewAdvertise: React.FC = () => {
 
         <Input
           type="text"
+          label="CEP"
+          placeholder="CEP do imóvel..."
+          value={data.zipcode}
+          onChange={e =>
+            onChange('zipcode', inputValidation.formatZipcode(e.target.value))
+          }
+        />
+
+        <Input
+          type="text"
           label="Rua"
           placeholder="Rua do imóvel..."
           value={data.street}
@@ -142,6 +164,14 @@ const NewAdvertise: React.FC = () => {
           placeholder="Bairro do imóvel..."
           value={data.neighborhood}
           onChange={e => onChange('neighborhood', e.target.value)}
+        />
+
+        <Input
+          type="text"
+          label="Número"
+          placeholder="Número do imóvel..."
+          value={data.number}
+          onChange={e => onChange('number', e.target.value)}
         />
 
         <Input
@@ -208,6 +238,14 @@ const NewAdvertise: React.FC = () => {
           placeholder="É um imóvel para quantas pessoas?"
           value={data.place}
           onChange={e => onChange('place', e.target.value)}
+        />
+
+        <Input
+          type="text"
+          label="Vagas na garagem"
+          placeholder="Possui garagem? Se sim, quantas vagas?"
+          value={data.garage}
+          onChange={e => onChange('garage', e.target.value)}
         />
 
         <InputSelect

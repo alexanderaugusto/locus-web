@@ -43,6 +43,12 @@ type PopertyCardProps = {
       email: string
       name: string
     }
+    address: {
+      street: string
+      neighborhood: string
+      city: string
+      state: string
+    }
     user_id?: number
   }
   onChangeFavorite: () => void
@@ -57,7 +63,7 @@ const PopertyCard: React.FC<PopertyCardProps> = ({
 
   const addFavorite = async () => {
     api
-      .put(`/user/favorite/${property.id}`, null)
+      .put(`/property/${property.id}/favorite`, null)
       .then(() => {
         if (onChangeFavorite) {
           onChangeFavorite()
@@ -70,7 +76,7 @@ const PopertyCard: React.FC<PopertyCardProps> = ({
 
   const removeFavorite = async () => {
     api
-      .delete(`/user/favorite/${property.id}`)
+      .delete(`/property/${property.id}/favorite`)
       .then(() => {
         if (onChangeFavorite) {
           onChangeFavorite()
@@ -127,8 +133,8 @@ const PopertyCard: React.FC<PopertyCardProps> = ({
           Aluguel {inputValidation.formatCurrency(property.price)}
         </p>
 
-        <p className="address">{`${property.street}, ${property.neighborhood}`}</p>
-        <p className="city">{`${property.city} (${property.state})`}</p>
+        <p className="address">{`${property.address.street}, ${property.address.neighborhood}`}</p>
+        <p className="city">{`${property.address.city} (${property.address.state})`}</p>
 
         <Link href={`/advertise/${property.id}`}>
           <a className="more-details">

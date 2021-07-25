@@ -31,14 +31,17 @@ type UserProps = {
   avatar: string
 }
 
-type PropertyProps = {
-  id: number
-  title: string
-  description: string
+type AddressProps = {
   street: string
   neighborhood: string
   city: string
   state: string
+}
+
+type PropertyProps = {
+  id: number
+  title: string
+  description: string
   bedrooms: number
   bathrooms: number
   area: number
@@ -46,6 +49,7 @@ type PropertyProps = {
   price: number
   images: Array<PropertyImageProps>
   owner: UserProps
+  address: AddressProps
 }
 
 const AdvertiseDetails: React.FC = () => {
@@ -58,7 +62,7 @@ const AdvertiseDetails: React.FC = () => {
 
   const getProperty = useCallback(async () => {
     await api
-      .get(`/user/property/${property_id}`)
+      .get(`/property/${property_id}`)
       .then(res => {
         setProperty(res.data)
       })
@@ -79,7 +83,7 @@ const AdvertiseDetails: React.FC = () => {
     }
 
     await api
-      .post(`/user/property/${router.query?.id}/owner/contact`, data)
+      .post(`/property/${router.query?.id}/owner/contact`, data)
       .then(() => {
         const type = 'success'
         const title = 'Deu tudo certo :D'
@@ -126,7 +130,7 @@ const AdvertiseDetails: React.FC = () => {
         <div className="info-container">
           <div className="info-property">
             <h1 className="title">{property?.title}</h1>
-            <p className="address">{`${property?.street}, ${property?.neighborhood} - ${property?.city} (${property?.state})`}</p>
+            <p className="address">{`${property?.address.street}, ${property?.address.neighborhood} - ${property?.address.city} (${property?.address.state})`}</p>
 
             <h1 className="label">Sobre esse imóvel:</h1>
             <p className="description">{property.description}</p>
@@ -186,8 +190,8 @@ const AdvertiseDetails: React.FC = () => {
                 <li>
                   <Icon id="icon" icon={faMapMarkedAlt} />
                   <p>
-                    {property?.street}, {property?.neighborhood} <br />{' '}
-                    {property?.city} ({property?.state})
+                    {property?.address.street}, {property?.address.neighborhood}{' '}
+                    <br /> {property?.address.city} ({property?.address.state})
                   </p>
                 </li>
               </ul>
