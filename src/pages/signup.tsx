@@ -103,7 +103,7 @@ const SignUp: React.FC = () => {
         <Input
           type="email"
           label="E-mail"
-          placeholder="Ex: alexander@imovel.com"
+          placeholder="Ex: alexander@locus.com"
           value={data.email}
           onChange={e => onChange('email', e.target.value)}
         />
@@ -111,7 +111,7 @@ const SignUp: React.FC = () => {
         <Input
           type="email"
           label="Confirmar e-mail"
-          placeholder="Ex: alexander@imovel.com"
+          placeholder="Ex: alexander@locus.com"
           value={data.confirmEmail}
           onChange={e => onChange('confirmEmail', e.target.value)}
         />
@@ -172,7 +172,7 @@ const SignUp: React.FC = () => {
   return (
     <div>
       <Head>
-        <title>Cadastrar - Vamos cadastrar sua conta IMovel</title>
+        <title>Cadastrar - Vamos cadastrar sua conta Locus</title>
       </Head>
 
       <main className="signup-page">

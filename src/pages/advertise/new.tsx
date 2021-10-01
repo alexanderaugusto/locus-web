@@ -323,7 +323,7 @@ const NewAdvertise: React.FC = () => {
   return (
     <div>
       <Head>
-        <title>Cadastrar - Vamos cadastrar sua conta IMovel</title>
+        <title>Cadastrar - Vamos cadastrar sua conta Locus</title>
       </Head>
 
       <main className="new-advertise-page">

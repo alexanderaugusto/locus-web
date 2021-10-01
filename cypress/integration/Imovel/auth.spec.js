@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
 /// <reference types="cypress"/>
 
-describe('Caso de Teste: Testar funcionalidades de autenticação do site IMovel', () => {
+describe('Caso de Teste: Testar funcionalidades de autenticação do site Locus', () => {
   it('Cenario: Cadastrar um novo usuário com sucesso', () => {
-    cy.visit('https://imovel-web.vercel.app/signup')
+    cy.visit('https://locus-app.vercel.app/signup')
 
     cy.get(':nth-child(1) > .input-container > input').type('Alexander Augusto')
     cy.get(':nth-child(2) > .input-container > input').type('111.111.111-00')
@@ -36,7 +36,7 @@ describe('Caso de Teste: Testar funcionalidades de autenticação do site IMovel
   })
 
   it('Cenario: Falha ao tentar cadastrar um novo usuário com dados inválidos', () => {
-    cy.visit('https://imovel-web.vercel.app/signup')
+    cy.visit('https://locus-app.vercel.app/signup')
 
     cy.get(':nth-child(1) > .input-container > input').type('Alexander Augusto')
     cy.get(':nth-child(2) > .input-container > input').type('111.111.111-00')
@@ -59,7 +59,7 @@ describe('Caso de Teste: Testar funcionalidades de autenticação do site IMovel
   })
 
   it('Cenario: Realizar login no site com sucesso', () => {
-    cy.visit('https://imovel-web.vercel.app/login')
+    cy.visit('https://locus-app.vercel.app/login')
 
     cy.get(':nth-child(2) > .input-container > input').type(
       'alexaasf_10@hotmail.com'
@@ -71,7 +71,7 @@ describe('Caso de Teste: Testar funcionalidades de autenticação do site IMovel
   })
 
   it('Cenario: Falha ao tentar realizar o login com dados inválidos', () => {
-    cy.visit('https://imovel-web.vercel.app/login')
+    cy.visit('https://locus-app.vercel.app/login')
 
     cy.get(':nth-child(2) > .input-container > input').type(
       'alexaasf_10@hotmail.com'

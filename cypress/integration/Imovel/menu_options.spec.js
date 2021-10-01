@@ -3,7 +3,7 @@
 
 describe('Caso de Teste: Testar funcionalidades do menu de opções no header da aplicação', () => {
   beforeEach(() => {
-    cy.visit('https://imovel-web.vercel.app')
+    cy.visit('https://locus-app.vercel.app')
   })
 
   it('Cenario: Navegar até a tela de dados da conta e alterar o nome do usuário', () => {
@@ -69,7 +69,7 @@ describe('Caso de Teste: Testar funcionalidades do menu de opções no header da
         method: 'POST',
         url: '/user/property'
       },
-      { fixture: 'imovel.json' }
+      { fixture: 'locus.json' }
     )
 
     cy.get('input').type('1500.00')
@@ -82,7 +82,7 @@ describe('Caso de Teste: Testar funcionalidades do menu de opções no header da
 function handleLogin() {
   cy.get('.dropdown-toggle > #icon > path').click()
   cy.get('.menu-not-signed > a').click()
-  cy.get(':nth-child(2) > .input-container > input').type('vanessa@imovel.com')
+  cy.get(':nth-child(2) > .input-container > input').type('vanessa@locus.com')
   cy.get(':nth-child(3) > .input-container > input').type('12345678')
   cy.get('.button-container').click()
 }

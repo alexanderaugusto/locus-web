@@ -145,7 +145,7 @@ const Account: React.FC = () => {
               <Input
                 type="email"
                 labelInside="E-mail"
-                placeholder="Ex: alexander@imovel.com"
+                placeholder="Ex: alexander@locus.com"
                 value={user.email}
                 onChange={e => onChange('email', e.target.value)}
               />

@@ -1,8 +1,8 @@
 {
   "id": 1,
-  "email": "user@imovel.com",
+  "email": "user@locus.com",
   "password": "$2a$08$FH9bB7yIXCrXEVu/cWvwue5xXjdMm.ypv93vMphuaSz9Y.LG/7xgy",
-  "name": "IMovel User",
+  "name": "Locus User",
   "cpf": "111.111.111-00",
   "phone": "(35) 9999-9999",
   "avatar": "default-avatar.png",

@@ -42,7 +42,7 @@ const Home: React.FC = () => {
   return (
     <div>
       <Head>
-        <title>IMovel - Nunca foi tão fácil alugar um imóvel</title>
+        <title>Locus - Nunca foi tão fácil alugar um imóvel</title>
       </Head>
 
       <main className="home-page">
@@ -57,7 +57,7 @@ const Home: React.FC = () => {
         />
 
         <form className="home-form">
-          <img src={Logo} alt="IMovel" />
+          <img src={Logo} alt="Locus" />
           <h1>Encontre o imóvel ideal para você!</h1>
           <Input
             iconSearch={faSearch}

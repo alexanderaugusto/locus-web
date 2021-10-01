@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ goBack }) => {
       {!goBack ? (
         <Link href="/">
           <a className="logo">
-            <img src={Logo} alt="IMovel" />
+            <img src={Logo} alt="Locus" />
           </a>
         </Link>
       ) : (

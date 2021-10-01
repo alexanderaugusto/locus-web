@@ -1,12 +1,12 @@
 /* eslint-disable no-undef */
 /// <reference types="cypress"/>
 
-describe('Caso de Teste: Testar funcionalidades da tela inicial do IMovel', () => {
+describe('Caso de Teste: Testar funcionalidades da tela inicial do Locus', () => {
   beforeEach(() => {
-    cy.visit('https://imovel-web.vercel.app')
+    cy.visit('https://locus-app.vercel.app')
   })
 
-  it('Cenario: Entrar no site do IMovel', () => {
+  it('Cenario: Entrar no site do Locus', () => {
     cy.get('h1').should('contain.text', 'Encontre o imóvel ideal para você!')
   })
 
@@ -43,7 +43,7 @@ describe('Caso de Teste: Testar funcionalidades da tela inicial do IMovel', () =
 function handleLogin() {
   cy.get('.dropdown-toggle > #icon > path').click()
   cy.get('.menu-not-signed > a').click()
-  cy.get(':nth-child(2) > .input-container > input').type('vanessa@imovel.com')
+  cy.get(':nth-child(2) > .input-container > input').type('vanessa@locus.com')
   cy.get(':nth-child(3) > .input-container > input').type('12345678')
   cy.get('.button-container').click()
 }

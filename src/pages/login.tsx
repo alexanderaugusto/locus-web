@@ -53,7 +53,7 @@ const Login: React.FC = () => {
         <Header goBack />
 
         <form className="sign-in" onSubmit={handleLogin}>
-          <img src={Logo} alt="IMovel" />
+          <img src={Logo} alt="Locus" />
           <Input
             type="email"
             icon={faEnvelope}
