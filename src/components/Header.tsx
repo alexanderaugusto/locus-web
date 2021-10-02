@@ -8,7 +8,7 @@ import { useAuth } from '../contexts/auth'
 import { STORAGE_URL } from '../services/api'
 import { Dropdown } from './index'
 
-import Logo from '../assets/logo-text-horizontal.png'
+import Logo from '../assets/logo-blue-horizontal.png'
 
 type HeaderProps = {
   goBack?: boolean

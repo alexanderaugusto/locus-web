@@ -7,7 +7,7 @@ import { Header, Button, Input } from '../components'
 import { useAuth } from '../contexts/auth'
 import { useAlert } from '../contexts/alert'
 
-import Logo from '../assets/logo-text.png'
+import Logo from '../assets/logo-blue.png'
 
 const Login: React.FC = () => {
   const auth = useAuth()

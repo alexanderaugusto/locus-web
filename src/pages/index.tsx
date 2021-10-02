@@ -5,7 +5,7 @@ import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../contexts/auth'
 import api from '../services/api'
-import Logo from '../assets/logo-black.png'
+import Logo from '../assets/logo-black-mini.png'
 
 const Home: React.FC = () => {
   const auth = useAuth()
