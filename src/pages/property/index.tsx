@@ -133,7 +133,7 @@ const Advertise: React.FC = () => {
             title="Você não possui nenhum imóvel!!"
             description="Para cadastrar o seu primeiro imóvel, clique no botão abaixo."
             buttonText="Meu primeiro imóvel"
-            redirectTo={auth.signed ? '/advertise/new' : '/login'}
+            redirectTo={auth.signed ? '/property/new' : '/login'}
           />
         ) : (
           <div className="advertise">
@@ -147,7 +147,7 @@ const Advertise: React.FC = () => {
                   <Button>Excluir</Button>
                 </a>
               )}
-              <Link href="/advertise/new">
+              <Link href="/property/new">
                 <a>
                   <Button>Anunciar</Button>
                 </a>

@@ -136,7 +136,7 @@ const PopertyCard: React.FC<PopertyCardProps> = ({
         <p className="address">{`${property.address.street}, ${property.address.neighborhood}`}</p>
         <p className="city">{`${property.address.city} (${property.address.state})`}</p>
 
-        <Link href={`/advertise/${property.id}`}>
+        <Link href={`/property/${property.id}`}>
           <a className="more-details">
             Mais detalhes
             <Icon id="icon" icon={faArrowAltCircleRight} />

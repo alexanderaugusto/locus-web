@@ -8,8 +8,6 @@ import { useAuth } from '../contexts/auth'
 import { STORAGE_URL } from '../services/api'
 import { Dropdown } from './index'
 
-import Logo from '../assets/logo-blue-horizontal.png'
-
 type HeaderProps = {
   goBack?: boolean
 }
@@ -27,7 +25,7 @@ const Header: React.FC<HeaderProps> = ({ goBack }) => {
       {!goBack ? (
         <Link href="/">
           <a className="logo">
-            <img src={Logo} alt="Locus" />
+            <img src="/logo-blue-horizontal.png" alt="Locus" width="auto" height="auto" />
           </a>
         </Link>
       ) : (
@@ -87,9 +85,9 @@ const Header: React.FC<HeaderProps> = ({ goBack }) => {
                     </Link>
                   </li>
                   <li
-                    className={isPathActive('/advertise') ? 'active-item' : ''}
+                    className={isPathActive('/property') ? 'active-item' : ''}
                   >
-                    <Link href="/advertise">
+                    <Link href="/property">
                       <a>
                         <Loyalty id="icon" />
                         <p>Anunciar</p>

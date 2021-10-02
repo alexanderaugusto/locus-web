@@ -41,8 +41,6 @@ const NewAdvertise: React.FC = () => {
     zipcode: ''
   })
 
-  console.log(router)
-
   function onChange(type: string, value: string) {
     setData({ ...data, [type]: value })
   }
@@ -96,7 +94,7 @@ const NewAdvertise: React.FC = () => {
     await api
       .post('/property', formData, config)
       .then(() => {
-        router.push('/advertise')
+        router.push('/property')
       })
       .catch(err => {
         const type = err.response.status >= 500 ? 'error' : 'warning'

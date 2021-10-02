@@ -7,8 +7,6 @@ import { Header, Button, Input } from '../components'
 import { useAuth } from '../contexts/auth'
 import { useAlert } from '../contexts/alert'
 
-import Logo from '../assets/logo-blue.png'
-
 const Login: React.FC = () => {
   const auth = useAuth()
   const alert = useAlert()
@@ -53,7 +51,7 @@ const Login: React.FC = () => {
         <Header goBack />
 
         <form className="sign-in" onSubmit={handleLogin}>
-          <img src={Logo} alt="Locus" />
+          <img src="/logo-blue.png" alt="Locus" />
           <Input
             type="email"
             icon={faEnvelope}

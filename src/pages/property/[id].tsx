@@ -210,7 +210,7 @@ const AdvertiseDetails: React.FC = () => {
                   if (auth.signed) {
                     handleContact()
                   } else {
-                    router.push(`/login?redirect=/advertise/${property.id}`)
+                    router.push(`/login?redirect=/property/${property.id}`)
                   }
                 }}
               >
