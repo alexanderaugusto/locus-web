@@ -17,6 +17,31 @@ import states from '../../constants/states'
 import types from '../../constants/types'
 import inputValidation from '../../utils/inputValidation'
 
+type AddressType = {
+  street: string
+  number: string
+  neighborhood: string
+  city: string
+  country: string
+  state: string
+  zipcode: string
+}
+
+type PopertyCardProps = {
+  id?: number
+  title: string
+  description: string
+  type: string
+  price: string
+  bedrooms: string
+  bathrooms: string
+  area: string
+  place: string
+  animal: string
+  garage: string
+  address?: AddressType
+}
+
 const NewAdvertise: React.FC = () => {
   const alert = useAlert()
   const router = useRouter()
@@ -58,43 +83,32 @@ const NewAdvertise: React.FC = () => {
   }
 
   async function onSubmit() {
-    const config = {
-      headers: {
-        'Content-Type': 'multipart/form-data'
+    const propertyData:PopertyCardProps = {
+      title: data.title,
+      description: data.description,
+      price: data.price,
+      bedrooms: data.bedrooms,
+      bathrooms: data.bathrooms,
+      area: data.area,
+      place: data.place,
+      garage: data.garage,
+      animal: data.animal,
+      type: data.type,
+      address:{
+        street: data.street,
+        neighborhood: data.neighborhood,
+        number: data.number,
+        city: data.city,
+        state: data.state,
+        country: data.country,
+        zipcode: data.zipcode
       }
     }
 
-    const formData = new FormData()
-    const address = {
-      street: data.street,
-      neighborhood: data.neighborhood,
-      number: parseInt(data.number, 10),
-      city: data.city,
-      state: data.state,
-      country: data.country,
-      zipcode: data.zipcode
-    }
-
-    formData.append('title', data.title)
-    formData.append('description', data.description)
-    formData.append('price', data.price.replace(',', '.'))
-    formData.append('bedrooms', data.bedrooms)
-    formData.append('bathrooms', data.bathrooms)
-    formData.append('area', data.area.replace(',', '.'))
-    formData.append('place', data.place)
-    formData.append('garage', data.garage)
-    formData.append('animal', data.animal)
-    formData.append('type', data.type)
-    formData.append('address', JSON.stringify(address))
-
-    data.images.forEach(image => {
-      formData.append('files', image)
-    })
-
     await api
-      .post('/property', formData, config)
-      .then(() => {
-        router.push('/property')
+      .post('/property', propertyData)
+      .then(res => {
+        addImages(res.data.id)
       })
       .catch(err => {
         const type = err.response.status >= 500 ? 'error' : 'warning'
@@ -105,6 +119,35 @@ const NewAdvertise: React.FC = () => {
           console.log(err)
         }
       })
+  }
+
+  async function addImages(propertyId: Number) {
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+
+    const formData = new FormData()
+
+    data.images.forEach(image => {
+      formData.append('files', image)
+    })
+
+    await api
+      .post(`/property/${propertyId}/images`, formData, config)
+      .then(() => {})
+      .catch(err => {
+        const type = err.response.status >= 500 ? 'error' : 'warning'
+        const title = 'Algo deu errado :('
+        const message = err.response?.data.message
+        alert.show(type, title, message)
+        if (process.env.NODE_ENV !== 'production') {
+          console.log(err)
+        }
+      })
+
+      router.push('/property')
   }
 
   function step1() {
