@@ -3,11 +3,11 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 import api from '../services/api'
 
 type UserProps = {
-  id: number
+  id?: number
   token?: string
-  email: string
-  name: string
-  avatar: string
+  email?: string
+  name?: string
+  avatar?: string
 }
 
 type AuthContextProps = {
@@ -55,7 +55,7 @@ export const AuthProvider: React.FC = ({ children }) => {
       const data = {
         email,
         password
-      }
+      } as { email: string; password: string }
 
       api
         .post('/auth/login', data)
