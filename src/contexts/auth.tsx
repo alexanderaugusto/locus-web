@@ -60,11 +60,11 @@ export const AuthProvider: React.FC = ({ children }) => {
       api
         .post('/auth/login', data)
         .then(res => {
-          const { token, ...userData } = res.data as UserProps
+          const { avatar, email, id, name, token } = res.data as UserProps
 
           api.defaults.headers.Authorization = `Bearer ${token}`
 
-          setUser(userData)
+          setUser({ avatar, email, id, name })
           localStorage.setItem('user-data', JSON.stringify(res.data))
           localStorage.setItem('user-token', token)
 
