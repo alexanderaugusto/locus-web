@@ -94,7 +94,7 @@ const AdvertiseDetails: React.FC = () => {
         console.error(err)
         const type = err.response.status >= 500 ? 'error' : 'warning'
         const title = 'Algo deu errado :('
-        const message = err.response?.data.message
+        const message = err.response?.data.description
         alert.show(type, title, message)
       })
   }
