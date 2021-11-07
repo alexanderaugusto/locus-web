@@ -4,6 +4,7 @@ import api from '../services/api'
 
 type UserProps = {
   id: number
+  token?: string
   email: string
   name: string
   avatar: string
@@ -31,11 +32,11 @@ export const AuthProvider: React.FC = ({ children }) => {
       await api
         .put('/auth/renew')
         .then(res => {
-          const { token, ...userData } = res.data
+          const { avatar, email, id, name, token } = res.data as UserProps
 
           api.defaults.headers.Authorization = `Bearer ${token}`
 
-          setUser(userData)
+          setUser({ avatar, email, id, name })
         })
         .catch(err => {
           console.error(err)
@@ -59,7 +60,7 @@ export const AuthProvider: React.FC = ({ children }) => {
       api
         .post('/auth/login', data)
         .then(res => {
-          const { token, ...userData } = res.data
+          const { token, ...userData } = res.data as UserProps
 
           api.defaults.headers.Authorization = `Bearer ${token}`
 
