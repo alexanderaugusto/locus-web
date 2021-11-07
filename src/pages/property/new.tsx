@@ -82,8 +82,36 @@ const NewAdvertise: React.FC = () => {
     })
   }
 
+  async function addImages(propertyId: number) {
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+
+    const formData = new FormData()
+
+    data.images.forEach(image => {
+      formData.append('files', image)
+    })
+
+    await api
+      .post(`/property/${propertyId}/images`, formData, config)
+      .catch(err => {
+        const type = err.response.status >= 500 ? 'error' : 'warning'
+        const title = 'Algo deu errado :('
+        const message = err.response?.data.description
+        alert.show(type, title, message)
+        if (process.env.NODE_ENV !== 'production') {
+          console.log(err)
+        }
+      })
+
+    router.push('/property')
+  }
+
   async function onSubmit() {
-    const propertyData:PopertyCardProps = {
+    const propertyData: PopertyCardProps = {
       title: data.title,
       description: data.description,
       price: data.price,
@@ -94,7 +122,7 @@ const NewAdvertise: React.FC = () => {
       garage: data.garage,
       animal: data.animal,
       type: data.type,
-      address:{
+      address: {
         street: data.street,
         neighborhood: data.neighborhood,
         number: data.number,
@@ -119,35 +147,6 @@ const NewAdvertise: React.FC = () => {
           console.log(err)
         }
       })
-  }
-
-  async function addImages(propertyId: Number) {
-    const config = {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    }
-
-    const formData = new FormData()
-
-    data.images.forEach(image => {
-      formData.append('files', image)
-    })
-
-    await api
-      .post(`/property/${propertyId}/images`, formData, config)
-      .then(() => {})
-      .catch(err => {
-        const type = err.response.status >= 500 ? 'error' : 'warning'
-        const title = 'Algo deu errado :('
-        const message = err.response?.data.description
-        alert.show(type, title, message)
-        if (process.env.NODE_ENV !== 'production') {
-          console.log(err)
-        }
-      })
-
-      router.push('/property')
   }
 
   function step1() {
