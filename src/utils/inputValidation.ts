@@ -13,6 +13,25 @@ function phone(phone: string) {
   return str.replace(regex, '($1) $2-$3')
 }
 
+function currency(value: string) {
+  value = parseInt(value.replace(/[\D]+/g, '')).toString()
+  value = value.replace(/([0-9]{2})$/g, ',$1')
+
+  if (value.length > 6) {
+    value = value.replace(/([0-9]{3}),([0-9]{2}$)/g, '.$1,$2')
+  }
+
+  if (value.length > 9) {
+    value = value.replace(/([0-9]{3}).([0-9]{3}),([0-9]{2}$)/g, '.$1.$2,$3')
+  }
+
+  if (value === 'NaN') {
+    return ''
+  }
+
+  return value
+}
+
 function formatCurrency(currency: number) {
   if (currency === undefined || currency === null) {
     return ''
@@ -33,6 +52,7 @@ const formatZipcode = text => {
 export default {
   cpf,
   phone,
+  currency,
   formatCurrency,
   formatZipcode
 }

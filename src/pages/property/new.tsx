@@ -354,7 +354,10 @@ const NewAdvertise: React.FC = () => {
           labelInside="R$"
           placeholder="1000,00"
           value={data.price}
-          onChange={e => onChange('price', e.target.value)}
+          maxLength={13}
+          onChange={e =>
+            onChange('price', inputValidation.currency(e.target.value))
+          }
         />
       </div>
     )
