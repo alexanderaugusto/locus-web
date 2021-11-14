@@ -61,7 +61,11 @@ const Header: React.FC<HeaderProps> = ({ goBack }) => {
               <>
                 <div className="user-info">
                   <img
-                    src={`${STORAGE_URL}/user/${auth.user.avatar}`}
+                    src={
+                      auth.user.is_oauth_user
+                        ? auth.user.avatar
+                        : `${STORAGE_URL}/user/${auth.user.avatar}`
+                    }
                     alt="Sua imagem"
                   />
                   <div>
@@ -104,7 +108,11 @@ const Header: React.FC<HeaderProps> = ({ goBack }) => {
             }
           >
             <img
-              src={`${STORAGE_URL}/user/${auth.user.avatar}`}
+              src={
+                auth.user.is_oauth_user
+                  ? auth.user.avatar
+                  : `${STORAGE_URL}/user/${auth.user.avatar}`
+              }
               alt="Sua imagem"
             />
           </Dropdown>

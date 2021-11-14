@@ -24,7 +24,9 @@ const Account: React.FC = () => {
       .then(res => {
         setUser({
           ...res.data,
-          avatar: `${STORAGE_URL}/user/${res.data.avatar}`
+          avatar: res.data.is_oauth_user
+            ? res.data.avatar
+            : `${STORAGE_URL}/user/${res.data.avatar}`
         })
       })
       .catch(err => {
