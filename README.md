@@ -22,8 +22,8 @@
 <p align="center">
  <a href="#-sobre-o-projeto">Sobre</a> •
  <a href="#-funcionalidades">Funcionalidades</a> •
- <a href="#-layout">Layout</a> •
  <a href="#-como-executar-o-projeto">Como executar</a> •
+ <a href="#-estrutura-de-arquivos">Estrutura de arquivos</a> •  
  <a href="#-tecnologias">Tecnologias</a> •
  <a href="#-autores">Autores</a> •
  <a href="#user-content--licença">Licença</a>
@@ -44,6 +44,7 @@ Locus - é uma forma de conectar clientes e proprietários, tornando a escolha d
 	  - [x] Editar dados
   - Imóveis:
 	  - [x] Cadastrar
+	  - [ ] Editar dados
 	  - [x] Listar
 	  - [x] Favoritar
 	  - [x] Pesquisar
@@ -62,114 +63,6 @@ Este projeto é dividido em três partes:
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/).
 
-Caso você já tenha estas ferramentas instaladas, <a href="#executando-o-projeto">clique aqui</a> para seguir ao próximo passo.
-
-#### Instalações
-
-##### 1) Windows:
-  No Windows, vamos instalar com o [chocolatey](https://chocolatey.org)
-
-- Instalar chocolatey: Primeiro, abra o powershell como administrador.
-
-  ```bash
-  # Rode esse comando para checar se você tem permissão para instalar dependências com o terminal.
-  $ Get-ExecutionPolicy
-
-  # Se o retorno for diferente de "Restricted" pule para o próximo comando. Senão, rode este comando:
-  $ Set-ExecutionPolicy AllSigned
-
-  # Finalmente, instale o chocolatey.
-  $ Set-ExecutionPolicy Bypass -Scope Process -
-  Force; [System.Net.ServicePointManager]::SecurityProtocol =
-  [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex
-  ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-
-  # Agora, teste a instalação executando no terminal (Não pode retornar nenhum erro):
-  $ choco
-  ```
-
-- Instalar nodejs e yarn:
-  ```bash
-  # Basta executar este comando para instalar o nodejs:
-  $ choco install -y nodejs-lts yarn
-
-  # Reinicie seu terminal e tente executar (todas as dependências devem retornar a versão do pacote):
-  $ node -v
-  $ npm -v
-  $ yarn -v
-  ```
-
- ##### 2) Linux:
-
-###### - Ubuntu (Debian):
-
-  - Instalar Curl:
-    ```bash
-     # Verifique se você instalou o Curl:
-     $ sudo  apt-get  install  curl
-     ```
-
-  - Instalar nodejs: Neste tutorial, a instalação é com curl, se você deseja instalar com um gerenciador de pacotes, tente isto: [nvm](https://github.com/nvm-sh/nvm#about).
-
-    ```bash
-    # Agora, se o curl estiver instalado, execute este comando:
-
-    # Usando Ubuntu:
-    $ curl -sL https://deb.nodesource.com/setup_12.x |
-    sudo -E bash - sudo apt-get install -y nodejs
-
-    # Usando Debian, with root
-    $ curl -sL https://deb.nodesource.com/setup_12.x | bash -
-    apt-get install -y nodejs
-    ```
-
-- Instalar yarn:
-  ```bash
-  # Configure o repositório yarn em seu sistema:
-  $ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - echo
-    "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-
-  # Execute este comando para instalar o yarn:
-  $ sudo apt update && sudo apt install --no-install-recommends yarn
-
-  # Agora, verifique as instalações:
-  $ node -v
-  $ npm -v
-  $ yarn -v
-  ```
-
-###### - Arch Linux:
-
-- Instalar nodejs e yarn:
-  ```bash
-  $ sudo pacman -S nodejs yarn
-
-  # ou
-
-  $ sudo pacman -S nodejs npm
-  ```
-
-##### 3) Mac:
-No mac, vamos instalar com o Homebrew.
-
-- Instalar Homebrew:
-  ```bash
-  # Basta executar este comando para instalar o homebrew:
-  $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-  ```
-
-- Instalar nodejs e yarn:
-  ```bash
-  # Com o homebew, vamos instalar o nodejs e yarn:
-  $ brew install node
-  $brew install yarn
-
-  # Reinicie seu terminal e tente executar (todas as dependências devem retornar a versão do pacote):
-  $ node -v
-  $ npm -v
-  $ yarn -v
-  ```
-
 #### Executando o projeto
 
 ##### 🧭 Rodando a aplicação Frontend
@@ -182,10 +75,10 @@ No mac, vamos instalar com o Homebrew.
     $ cd locus-web
 
     # Instale as dependências
-    $ yarn install ou npm install
+    $ yarn install
 
     # Execute a aplicação
-    $ yarn start ou npm start
+    $ yarn start
 
     # Abra seu browser favorito e acesse http://localhost:3000.
    ```
@@ -200,6 +93,127 @@ No mac, vamos instalar com o Homebrew.
     $ ./node_modules/.bin/cypress run --spec 'cypress/integration/locus/**/'
 
    ```
+   
+---
+
+## 📁 Estrutura de arquivos
+
+Atualizado 15/11/2021
+
+
+```
+locus-web
+├─ .editorconfig
+├─ .eslintignore
+├─ .eslintrc.json
+├─ .gitignore
+├─ babel.config.js
+├─ cypress
+│  ├─ fixtures
+│  │  ├─ locus.json
+│  │  └─ user.json
+│  ├─ integration
+│  │  └─ Imovel
+│  │     ├─ auth.spec.js
+│  │     ├─ imovel.spec.js
+│  │     └─ menu_options.spec.js
+│  ├─ plugins
+│  │  └─ index.js
+│  ├─ screenshots
+│  │  └─ Imovel
+│  │     ├─ auth.spec.js
+│  │     │  └─ Caso de Teste Testar funcionalidades de autenticação do site Locus -- Cenario Realizar login no site com sucesso (failed).png
+│  │     ├─ imovel.spec.js
+│  │     └─ menu_options.spec.js
+│  │        ├─ Caso de Teste Testar funcionalidades do menu de opções no header da aplicação -- Cenario Navegar até a tela de anuncio e anunciar um novo imóvel (failed).png
+│  │        └─ Caso de Teste Testar funcionalidades do menu de opções no header da aplicação -- Cenario Navegar até a tela de favoritos (failed).png
+│  └─ support
+│     ├─ commands.js
+│     └─ index.js
+├─ cypress.json
+├─ LICENSE
+├─ next-env.d.ts
+├─ next.config.js
+├─ package.json
+├─ prettier.config.js
+├─ public
+│  ├─ google-icon.png
+│  ├─ icon.png
+│  ├─ logo-black-mini.png
+│  ├─ logo-blue-horizontal.png
+│  └─ logo-blue.png
+├─ README.md
+├─ src
+│  ├─ components
+│  │  ├─ Alert.tsx
+│  │  ├─ Button.tsx
+│  │  ├─ Dropdown.tsx
+│  │  ├─ EmptyMessage.tsx
+│  │  ├─ FilterModal.tsx
+│  │  ├─ Header.tsx
+│  │  ├─ index.tsx
+│  │  ├─ Input.tsx
+│  │  ├─ InputArea.tsx
+│  │  ├─ InputCheck.tsx
+│  │  ├─ InputSelect.tsx
+│  │  ├─ PropertyCard.tsx
+│  │  └─ StepProgress.tsx
+│  ├─ constants
+│  │  ├─ states.ts
+│  │  └─ types.ts
+│  ├─ contexts
+│  │  ├─ alert.tsx
+│  │  └─ auth.tsx
+│  ├─ pages
+│  │  ├─ account.tsx
+│  │  ├─ favorite.tsx
+│  │  ├─ index.tsx
+│  │  ├─ login.tsx
+│  │  ├─ property
+│  │  │  ├─ index.tsx
+│  │  │  ├─ new.tsx
+│  │  │  └─ [id].tsx
+│  │  ├─ signup.tsx
+│  │  ├─ _app.tsx
+│  │  └─ _document.tsx
+│  ├─ services
+│  │  └─ api.ts
+│  ├─ styles
+│  │  ├─ components
+│  │  │  ├─ Alert.css
+│  │  │  ├─ Button.css
+│  │  │  ├─ Dropdown.css
+│  │  │  ├─ EmptyMessage.css
+│  │  │  ├─ FilterModal.css
+│  │  │  ├─ Header.css
+│  │  │  ├─ Input.css
+│  │  │  ├─ InputArea.css
+│  │  │  ├─ InputCheck.css
+│  │  │  ├─ InputSelect.css
+│  │  │  ├─ PropertyCard.css
+│  │  │  ├─ PropertyCardMedia.css
+│  │  │  └─ StepProgress.css
+│  │  ├─ global.css
+│  │  └─ pages
+│  │     ├─ Account.css
+│  │     ├─ Advertise.css
+│  │     ├─ AdvertiseDetails.css
+│  │     ├─ AdvertiseMedia.css
+│  │     ├─ Favorite.css
+│  │     ├─ FavoriteMedia.css
+│  │     ├─ Home.css
+│  │     ├─ HomeMedia.css
+│  │     ├─ Login.css
+│  │     ├─ NewAdvertise.css
+│  │     ├─ NewAdvertiseMedia.css
+│  │     └─ SignUp.css
+│  └─ utils
+│     └─ inputValidation.ts
+├─ tsconfig.json
+├─ vercel.json
+└─ yarn.lock
+
+```
 ---
 
 ## 🛠 Tecnologias
@@ -208,9 +222,10 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 #### **Web**  ([Next.js](https://nextjs.org))
 - **Dependências**:
-  -   **[ReactJS](https://pt-br.reactjs.org)**
   -   **[Axios](https://github.com/axios/axios)**
+  -   **[ReactJS](https://pt-br.reactjs.org)**
   -   **[React Dropzone](https://react-dropzone.js.org)**
+  -   **[React Google Login](https://github.com/anthonyjgrove/react-google-login)**  -   
   -   **[Next Images](https://github.com/twopluszero/next-images)**
 
 - **Dependências de Desenvolvimento**:
@@ -229,6 +244,7 @@ Veja o arquivo  [package.json](https://github.com/alexanderaugusto/locus-web/blo
 <table>
   <tr>
     <td align="center"><a href="https://github.com/alexanderaugusto/"><img style="border-radius: 50%;" src="https://avatars2.githubusercontent.com/u/51683816?v=4" width="100px;" alt=""/><br /><sub><b>Alexander Augusto</b></sub></a></td>
+    <td align="center"><a href="https://github.com/pedroblimaa"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/46970693?v=4" width="100px;" alt=""/><br /><sub><b>Pedro Bonfilio</b></sub></a></td>
     <td align="center"><a href="https://github.com/vanessaSwerts/"><img style="border-radius: 50%;" src="https://avatars2.githubusercontent.com/u/57146734?v=4" width="100px;" alt=""/><br /><sub><b>Vanessa Swerts</b></sub></a></td>
   </tr>
 </table>
