@@ -35,11 +35,12 @@ export const AuthProvider: React.FC = ({ children }) => {
       await api
         .put('/auth/renew')
         .then(res => {
-          const { avatar, email, id, name, token } = res.data as UserProps
+          const { avatar, email, id, name, is_oauth_user, token } =
+            res.data as UserProps
 
           api.defaults.headers.Authorization = `Bearer ${token}`
 
-          setUser({ avatar, email, id, name })
+          setUser({ avatar, email, id, name, is_oauth_user })
         })
         .catch(err => {
           console.error(err)
