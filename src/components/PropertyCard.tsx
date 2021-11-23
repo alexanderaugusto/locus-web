@@ -62,6 +62,7 @@ const PopertyCard: React.FC<PopertyCardProps> = ({
   const router = useRouter()
 
   const addFavorite = async () => {
+    property.favorite = true
     api
       .put(`/property/${property.id}/favorite`, null)
       .then(() => {
@@ -75,6 +76,7 @@ const PopertyCard: React.FC<PopertyCardProps> = ({
   }
 
   const removeFavorite = async () => {
+    property.favorite = false
     api
       .delete(`/property/${property.id}/favorite`)
       .then(() => {
@@ -118,6 +120,7 @@ const PopertyCard: React.FC<PopertyCardProps> = ({
         >
           <Icon
             id="icon"
+            className="heart-icon"
             icon={faHeart}
             color={
               property.favorite || property.favorite === undefined

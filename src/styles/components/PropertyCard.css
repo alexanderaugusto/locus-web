@@ -123,3 +123,8 @@ filter: brightness(80%);
 .content .info-container .more-details #icon{
   margin-left: 5px;
 }
+
+
+.heart-icon{
+  transition: all 0.1s;
+}
