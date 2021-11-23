@@ -36,6 +36,7 @@ yarn-error.log*
 cypress/reports/*
 cypress/videos/*
 cypress/videos/*
+cypress/screenshots/*
 mochawesome-report
 
 .env
