@@ -9,6 +9,7 @@ import InputArea from './InputArea'
 import InputCheck from './InputCheck'
 import InputSelect from './InputSelect'
 import PropertyCard from './PropertyCard'
+import SelectInput from './SelectInput'
 import StepProgress from './StepProgress'
 
 export {
@@ -23,5 +24,6 @@ export {
   InputCheck,
   InputSelect,
   PropertyCard,
-  StepProgress
+  StepProgress,
+  SelectInput
 }

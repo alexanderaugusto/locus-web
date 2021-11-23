@@ -1,6 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import Head from 'next/head'
-import { Header, FilterModal, Input, Button, PropertyCard } from '../components'
+import {
+  Header,
+  FilterModal,
+  Button,
+  PropertyCard,
+  SelectInput
+} from '../components'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../contexts/auth'
@@ -10,7 +16,13 @@ const Home: React.FC = () => {
   const auth = useAuth()
   const [properties, setProperties] = useState([])
   const [filterOpen, setFilterOpen] = useState(false)
-  const [searchText] = useState('Santa Rita do Sapucaí, MG')
+
+  const [cities, setCities] = useState([
+    {
+      city: 'No cities available',
+      state: ''
+    }
+  ])
 
   const getProperties = useCallback(
     async filters => {
@@ -30,12 +42,26 @@ const Home: React.FC = () => {
     [properties]
   )
 
+  const getItems = async () => {
+    await api
+      .get('/cities')
+      .then(res => {
+        setCities(res.data)
+      })
+      .catch(err => {
+        console.error(err)
+      })
+
+    return []
+  }
+
   const onChangeFavorite = () => {
     getProperties({})
   }
 
   useEffect(() => {
     getProperties({})
+    getItems()
   }, [auth.signed])
 
   return (
@@ -58,11 +84,14 @@ const Home: React.FC = () => {
         <form className="home-form">
           <img src="/logo-black-mini.png" alt="Locus" />
           <h1>Encontre o imóvel ideal para você!</h1>
-          <Input
+          <SelectInput
             iconSearch={faSearch}
             placeholder="Pesquise por localidade..."
-            value={searchText}
+            items={cities}
             readOnly={true}
+            applyFilter={filters => {
+              getProperties(filters)
+            }}
           />
           <div className="filter">
             <div className="filter-location">
