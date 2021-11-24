@@ -165,7 +165,7 @@ const AdvertiseDetails: React.FC = () => {
               </div>
             </div>
 
-            <h1 className="label">Aluguel:</h1>
+            <h1 className="label">Venda:</h1>
             <p className="price">
               {inputValidation.formatCurrency(Number(property?.price))}
             </p>

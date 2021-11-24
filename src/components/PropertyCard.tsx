@@ -133,7 +133,7 @@ const PopertyCard: React.FC<PopertyCardProps> = ({
 
       <div className="info-container">
         <p className="price">
-          Aluguel {inputValidation.formatCurrency(property.price)}
+          Venda {inputValidation.formatCurrency(property.price)}
         </p>
 
         <p className="address">{`${property.address.street}, ${property.address.neighborhood}`}</p>
