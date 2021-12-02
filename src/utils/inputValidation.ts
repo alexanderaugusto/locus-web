@@ -29,6 +29,10 @@ function currency(value: string) {
     return ''
   }
 
+  if (value.substr(0, 1) === ',' || value.substr(0, 1) === '.') {
+    return value.substr(1)
+  }
+
   return value
 }
 

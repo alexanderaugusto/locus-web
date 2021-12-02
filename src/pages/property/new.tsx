@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Dropzone from 'react-dropzone'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faCopy } from '@fortawesome/free-solid-svg-icons'
 import api from '../../services/api'
 import { useAlert } from '../../contexts/alert'
 import {
@@ -16,6 +16,9 @@ import {
 import states from '../../constants/states'
 import types from '../../constants/types'
 import inputValidation from '../../utils/inputValidation'
+import zipcodeApi from '../../services/zipcodeApi'
+import positionStackApi from '../../services/positionStackApi'
+import housingPredictorApi from '../../services/housingPredictorApi'
 
 type AddressType = {
   street: string
@@ -42,6 +45,33 @@ type PopertyCardProps = {
   address?: AddressType
 }
 
+type ZipcodeResponseProps = {
+  erro: string
+  logradouro: string
+  bairro: string
+  localidade: string
+  uf: string
+}
+
+type PositionStackProps = {
+  data: [
+    {
+      latitude: string
+      longitude: string
+    }
+  ]
+}
+
+type HousingPredictorRequestProps = {
+  data: string[][]
+}
+
+type HousingPredictorResponseProps = {
+  data: {
+    prediction: [string]
+  }
+}
+
 const NewAdvertise: React.FC = () => {
   const alert = useAlert()
   const router = useRouter()
@@ -63,8 +93,11 @@ const NewAdvertise: React.FC = () => {
     city: '',
     state: 'MG',
     country: 'Brasil',
-    zipcode: ''
+    zipcode: '',
+    latitude: '',
+    longitude: ''
   })
+  const [estimatedPrice, setEstimatedPrice] = useState('')
 
   function onChange(type: string, value: string) {
     setData({ ...data, [type]: value })
@@ -136,7 +169,11 @@ const NewAdvertise: React.FC = () => {
     await api
       .post('/property', propertyData)
       .then(res => {
-        addImages(res.data.id)
+        if (data.images.length > 0) {
+          addImages(res.data.id)
+        } else {
+          router.push('/property')
+        }
       })
       .catch(err => {
         const type = err.response.status >= 500 ? 'error' : 'warning'
@@ -147,6 +184,112 @@ const NewAdvertise: React.FC = () => {
           console.log(err)
         }
       })
+  }
+
+  const searchZipcode = async (zipcode: string) => {
+    const zipcodeNumber = zipcode.replace(/\D/g, '')
+
+    const validZipCode = /^[0-9]{8}$/
+
+    if (validZipCode.test(zipcodeNumber)) {
+      await zipcodeApi
+        .get<ZipcodeResponseProps>(`/${zipcodeNumber}/json`)
+        .then(res => {
+          if (res.data.erro) {
+            const type = 'warning'
+            const title = 'Algo deu errado :('
+            const message = 'O CEP fornecido é inválido.'
+            alert.show(type, title, message)
+          }
+
+          setData({
+            ...data,
+            zipcode: zipcode,
+            street: res.data.logradouro,
+            neighborhood: res.data.bairro,
+            city: res.data.localidade,
+            state: res.data.uf
+          })
+        })
+        .catch(err => {
+          console.error(err)
+
+          const type = err.response.status >= 500 ? 'error' : 'warning'
+          const title = 'Algo deu errado :('
+          const message = err.response?.data.description
+          alert.show(type, title, message)
+          if (process.env.NODE_ENV !== 'production') {
+            console.log(err)
+          }
+        })
+    }
+  }
+
+  const getGeolocationByAddress = async () => {
+    const { street, number, neighborhood, city, state, zipcode } = data
+
+    const config = {
+      params: {
+        query: `${street} ${number}, ${neighborhood}, ${city} - ${state} - ${zipcode}`
+      }
+    }
+
+    await positionStackApi
+      .get<PositionStackProps>('/forward', config)
+      .then(res => {
+        setData({
+          ...data,
+          latitude: res.data.data[0].latitude,
+          longitude: res.data.data[0].longitude
+        })
+      })
+      .catch(err => {
+        console.error(err)
+      })
+  }
+
+  const getEstimatedPropertyPrice = async () => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      }
+    }
+
+    const features = [
+      data.type,
+      data.area,
+      data.bedrooms,
+      data.bathrooms,
+      data.garage,
+      data.latitude,
+      data.longitude
+    ]
+
+    const requestData = {
+      data: [features]
+    }
+
+    await housingPredictorApi
+      .post<HousingPredictorRequestProps, HousingPredictorResponseProps>(
+        '/predict',
+        requestData,
+        config
+      )
+      .then(res => {
+        setEstimatedPrice(res.data.prediction[0])
+      })
+      .catch(err => {
+        console.error(err)
+      })
+  }
+
+  const copyEstimatedPrice = () => {
+    const formatedPrice = parseFloat(estimatedPrice).toFixed(2)
+    setData({
+      ...data,
+      price: inputValidation.currency(formatedPrice.toString())
+    })
   }
 
   function step1() {
@@ -188,6 +331,7 @@ const NewAdvertise: React.FC = () => {
           onChange={e =>
             onChange('zipcode', inputValidation.formatZipcode(e.target.value))
           }
+          onBlur={e => searchZipcode(e.target.value)}
         />
 
         <Input
@@ -359,6 +503,23 @@ const NewAdvertise: React.FC = () => {
             onChange('price', inputValidation.currency(e.target.value))
           }
         />
+
+        {estimatedPrice && (
+          <div className="estimated-price-container">
+            <h2>
+              Calculamos um preço estimado para seu imóvel com base nas
+              caracteristicas informadas
+            </h2>
+            <div className="estimated-price-copy">
+              <p>
+                {inputValidation.formatCurrency(parseFloat(estimatedPrice))}
+              </p>
+              <button onClick={() => copyEstimatedPrice()}>
+                <Icon id="icon" icon={faCopy} />
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     )
   }
@@ -381,10 +542,12 @@ const NewAdvertise: React.FC = () => {
                 content: step1
               },
               {
-                content: step2
+                content: step2,
+                onNext: () => getGeolocationByAddress()
               },
               {
-                content: step3
+                content: step3,
+                onNext: () => getEstimatedPropertyPrice()
               },
               {
                 content: step4

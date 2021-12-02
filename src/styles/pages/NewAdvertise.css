@@ -58,3 +58,47 @@
   color: #0565FC;
   font-size: 18px;
 }
+
+.new-advertise-page .new-advertise .step-5 .estimated-price-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.new-advertise-page .new-advertise .step-5 .estimated-price-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.new-advertise-page .new-advertise .step-5 .estimated-price-container h2{
+  font-size: 18px;
+  color: #7F8C8D;
+  text-align: center;
+  font-weight: normal;
+}
+
+.new-advertise-page .new-advertise .step-5 .estimated-price-container .estimated-price-copy{
+  margin-top: 10px;
+  display: flex;
+}
+
+.new-advertise-page .new-advertise .step-5 .estimated-price-container .estimated-price-copy p{
+  font-size: 25px;
+  color: #7F8C8D;
+  text-align: center;
+  font-weight: bold;
+}
+
+.new-advertise-page .new-advertise .step-5 .estimated-price-container .estimated-price-copy button{
+  margin-left: 10px;
+  padding: 0;
+}
+
+.new-advertise-page .new-advertise .step-5 .estimated-price-container .estimated-price-copy #icon{
+  font-size: 25px;
+  color: #7F8C8D;
+}
+

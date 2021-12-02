@@ -6,6 +6,8 @@ import { Button } from './index'
 type StepProps = {
   label?: string
   content: () => JSX.Element
+  onNext?: () => void
+  onBack?: () => void
 }
 
 type StepProgressProps = {
@@ -24,12 +26,18 @@ const StepProgress: React.FC<StepProgressProps> = ({
   function previousStep() {
     if (activeStep > 0) {
       setActiveStep(activeStep - 1)
+      if (steps[activeStep].onBack) {
+        steps[activeStep].onBack()
+      }
     }
   }
 
   function nextStep() {
     if (activeStep < steps.length) {
       setActiveStep(activeStep + 1)
+      if (steps[activeStep].onNext) {
+        steps[activeStep].onNext()
+      }
     }
   }
 
