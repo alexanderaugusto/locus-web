@@ -17,7 +17,6 @@ import states from '../../constants/states'
 import types from '../../constants/types'
 import inputValidation from '../../utils/inputValidation'
 import zipcodeApi from '../../services/zipcodeApi'
-import positionStackApi from '../../services/positionStackApi'
 import housingPredictorApi from '../../services/housingPredictorApi'
 
 type AddressType = {
@@ -28,6 +27,8 @@ type AddressType = {
   country: string
   state: string
   zipcode: string
+  latitude?: string
+  longitude?: string
 }
 
 type PopertyCardProps = {
@@ -53,13 +54,9 @@ type ZipcodeResponseProps = {
   uf: string
 }
 
-type PositionStackProps = {
-  data: [
-    {
-      latitude: string
-      longitude: string
-    }
-  ]
+type GeolocationProps = {
+  latitude: string
+  longitude: string
 }
 
 type HousingPredictorRequestProps = {
@@ -162,7 +159,9 @@ const NewAdvertise: React.FC = () => {
         city: data.city,
         state: data.state,
         country: data.country,
-        zipcode: data.zipcode
+        zipcode: data.zipcode,
+        latitude: data.latitude,
+        longitude: data.longitude
       }
     }
 
@@ -230,17 +229,22 @@ const NewAdvertise: React.FC = () => {
 
     const config = {
       params: {
-        query: `${street} ${number}, ${neighborhood}, ${city} - ${state} - ${zipcode}`
+        street,
+        number,
+        neighborhood,
+        city,
+        state,
+        zipcode
       }
     }
 
-    await positionStackApi
-      .get<PositionStackProps>('/forward', config)
+    await api
+      .get<GeolocationProps>('/external/geolocation', config)
       .then(res => {
         setData({
           ...data,
-          latitude: res.data.data[0].latitude,
-          longitude: res.data.data[0].longitude
+          latitude: res.data.latitude,
+          longitude: res.data.longitude
         })
       })
       .catch(err => {
