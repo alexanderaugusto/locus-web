@@ -3,12 +3,14 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Dropzone from 'react-dropzone'
 import { useAlert } from '../contexts/alert'
+import { useLoading } from '../contexts/loading'
 import api, { STORAGE_URL } from '../services/api'
 import { Header, Input, StepProgress } from '../components'
 import inputValidation from '../utils/inputValidation'
 
 const SignUp: React.FC = () => {
   const alert = useAlert()
+  const { startLoading, stopLoading } = useLoading()
   const router = useRouter()
   const [data, setData] = useState({
     name: '',
@@ -49,6 +51,8 @@ const SignUp: React.FC = () => {
       formData.append('file', data.avatar)
     }
 
+    startLoading()
+
     await api
       .post('/user', formData, config)
       .then(() => {
@@ -63,6 +67,8 @@ const SignUp: React.FC = () => {
           console.log(err)
         }
       })
+
+    stopLoading()
   }
 
   function step1() {

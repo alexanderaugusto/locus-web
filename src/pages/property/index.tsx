@@ -5,12 +5,14 @@ import { Button, Header, EmptyMessage } from '../../components'
 import { faHouseDamage } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../../contexts/auth'
 import { useAlert } from '../../contexts/alert'
+import { useLoading } from '../../contexts/loading'
 import api, { STORAGE_URL } from '../../services/api'
 import inputValidation from '../../utils/inputValidation'
 
 const Advertise: React.FC = () => {
   const auth = useAuth()
   const alert = useAlert()
+  const { startLoading, stopLoading } = useLoading()
   const [properties, setProperties] = useState([])
   const [isPropertySelected, setIsPropertySelected] = useState(false)
   const [selected, setSelected] = useState({
@@ -33,6 +35,8 @@ const Advertise: React.FC = () => {
   })
 
   async function getProperties() {
+    startLoading()
+
     await api
       .get('/user/properties')
       .then(res => {
@@ -41,6 +45,8 @@ const Advertise: React.FC = () => {
       .catch(err => {
         console.error(err)
       })
+
+    stopLoading()
   }
 
   const removeProperty = async item => {

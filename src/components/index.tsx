@@ -11,6 +11,7 @@ import InputSelect from './InputSelect'
 import PropertyCard from './PropertyCard'
 import SelectInput from './SelectInput'
 import StepProgress from './StepProgress'
+import PageLoader from './PageLoader'
 
 export {
   Alert,
@@ -25,5 +26,6 @@ export {
   InputSelect,
   PropertyCard,
   StepProgress,
-  SelectInput
+  SelectInput,
+  PageLoader
 }

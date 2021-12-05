@@ -10,10 +10,12 @@ import {
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../contexts/auth'
+import { useLoading } from '../contexts/loading'
 import api from '../services/api'
 
 const Home: React.FC = () => {
   const auth = useAuth()
+  const { startLoading, stopLoading } = useLoading()
   const [properties, setProperties] = useState([])
   const [filterOpen, setFilterOpen] = useState(false)
 
@@ -30,6 +32,8 @@ const Home: React.FC = () => {
         params: filters
       }
 
+      startLoading()
+
       await api
         .get('/properties', config)
         .then(res => {
@@ -38,11 +42,15 @@ const Home: React.FC = () => {
         .catch(err => {
           console.error(err)
         })
+
+      stopLoading()
     },
     [properties]
   )
 
   const getItems = async () => {
+    startLoading()
+
     await api
       .get('/cities')
       .then(res => {
@@ -52,7 +60,7 @@ const Home: React.FC = () => {
         console.error(err)
       })
 
-    return []
+    stopLoading()
   }
 
   const onChangeFavorite = () => {

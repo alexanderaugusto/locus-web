@@ -2,6 +2,7 @@ import React from 'react'
 import { AppProps } from 'next/app'
 import { AuthProvider } from '../contexts/auth'
 import { AlertProvider } from '../contexts/alert'
+import { LoadingProvider } from '../contexts/loading'
 
 import '../styles/global.css'
 import '../styles/pages/Home.css'
@@ -30,6 +31,7 @@ import '../styles/components/InputSelect.css'
 import '../styles/components/PropertyCard.css'
 import '../styles/components/PropertyCardMedia.css'
 import '../styles/components/StepProgress.css'
+import '../styles/components/PageLoader.css'
 
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
@@ -38,9 +40,11 @@ config.autoAddCss = false
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <AlertProvider>
-      <AuthProvider>
-        <Component {...pageProps} />
-      </AuthProvider>
+      <LoadingProvider>
+        <AuthProvider>
+          <Component {...pageProps} />
+        </AuthProvider>
+      </LoadingProvider>
     </AlertProvider>
   )
 }

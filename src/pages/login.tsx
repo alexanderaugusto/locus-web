@@ -7,16 +7,20 @@ import GoogleLogin from 'react-google-login'
 import { Header, Button, Input } from '../components'
 import { useAuth } from '../contexts/auth'
 import { useAlert } from '../contexts/alert'
+import { useLoading } from '../contexts/loading'
 
 const Login: React.FC = () => {
   const auth = useAuth()
   const alert = useAlert()
+  const { startLoading, stopLoading } = useLoading()
   const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   async function handleLogin(e) {
     e.preventDefault()
+
+    startLoading()
 
     await auth
       .signIn(email, password)
@@ -38,9 +42,13 @@ const Login: React.FC = () => {
           console.log(err)
         }
       })
+
+    stopLoading()
   }
 
   async function handleGoogleLoginSuccess(response) {
+    startLoading()
+
     await auth
       .signInWithGoogle(response.accessToken)
       .then(() => {
@@ -61,6 +69,8 @@ const Login: React.FC = () => {
           console.log(err)
         }
       })
+
+    stopLoading()
   }
 
   async function handleGoogleLoginError() {

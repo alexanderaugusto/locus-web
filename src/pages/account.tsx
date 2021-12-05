@@ -4,6 +4,7 @@ import Dropzone from 'react-dropzone'
 import { faUserAlt } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../contexts/auth'
 import { useAlert } from '../contexts/alert'
+import { useLoading } from '../contexts/loading'
 import api, { STORAGE_URL } from '../services/api'
 import inputValidation from '../utils/inputValidation'
 import { Button, Header, Input, EmptyMessage } from '../components'
@@ -11,6 +12,7 @@ import { Button, Header, Input, EmptyMessage } from '../components'
 const Account: React.FC = () => {
   const auth = useAuth()
   const alert = useAlert()
+  const { startLoading, stopLoading } = useLoading()
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -19,6 +21,8 @@ const Account: React.FC = () => {
   })
 
   async function getUser() {
+    startLoading()
+
     await api
       .get('/user')
       .then(res => {
@@ -38,6 +42,8 @@ const Account: React.FC = () => {
           console.log(err)
         }
       })
+
+    stopLoading()
   }
 
   function onChange(type: string, value: string) {
@@ -51,6 +57,8 @@ const Account: React.FC = () => {
       name: user.name,
       phone: user.phone
     }
+
+    startLoading()
 
     await api
       .put('/user', data)
@@ -69,6 +77,8 @@ const Account: React.FC = () => {
           console.log(err)
         }
       })
+
+    stopLoading()
   }
 
   async function updateAvatar(image) {

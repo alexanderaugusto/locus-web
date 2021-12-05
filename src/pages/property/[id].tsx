@@ -6,6 +6,7 @@ import api, { STORAGE_URL } from '../../services/api'
 import { Header, InputArea, Button } from '../../components'
 import { useAuth } from '../../contexts/auth'
 import { useAlert } from '../../contexts/alert'
+import { useLoading } from '../../contexts/loading'
 import inputValidation from '../../utils/inputValidation'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import {
@@ -55,12 +56,15 @@ type PropertyProps = {
 const AdvertiseDetails: React.FC = () => {
   const auth = useAuth()
   const alert = useAlert()
+  const { startLoading, stopLoading } = useLoading()
   const router = useRouter()
   const [message, setMessage] = useState('')
   const [property, setProperty] = useState<PropertyProps>(null)
   const { id: property_id } = router.query
 
   const getProperty = useCallback(async () => {
+    startLoading()
+
     await api
       .get(`/property/${property_id}`)
       .then(res => {
@@ -69,6 +73,8 @@ const AdvertiseDetails: React.FC = () => {
       .catch(err => {
         console.error(err)
       })
+
+    stopLoading()
   }, [property_id])
 
   useEffect(() => {
@@ -81,6 +87,8 @@ const AdvertiseDetails: React.FC = () => {
     const data = {
       message
     }
+
+    startLoading()
 
     await api
       .post(`/property/${router.query?.id}/owner/contact`, data)
@@ -97,6 +105,8 @@ const AdvertiseDetails: React.FC = () => {
         const message = err.response?.data.description
         alert.show(type, title, message)
       })
+
+    stopLoading()
   }
 
   if (!property) {

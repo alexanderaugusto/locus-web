@@ -6,6 +6,7 @@ import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { faPlus, faCopy } from '@fortawesome/free-solid-svg-icons'
 import api from '../../services/api'
 import { useAlert } from '../../contexts/alert'
+import { useLoading } from '../../contexts/loading'
 import {
   Header,
   Input,
@@ -71,6 +72,7 @@ type HousingPredictorResponseProps = {
 
 const NewAdvertise: React.FC = () => {
   const alert = useAlert()
+  const { startLoading, stopLoading } = useLoading()
   const router = useRouter()
   const [data, setData] = useState({
     title: '',
@@ -125,6 +127,8 @@ const NewAdvertise: React.FC = () => {
       formData.append('files', image)
     })
 
+    startLoading()
+
     await api
       .post(`/property/${propertyId}/images`, formData, config)
       .catch(err => {
@@ -136,6 +140,8 @@ const NewAdvertise: React.FC = () => {
           console.log(err)
         }
       })
+
+    stopLoading()
 
     router.push('/property')
   }
@@ -165,6 +171,8 @@ const NewAdvertise: React.FC = () => {
       }
     }
 
+    startLoading()
+
     await api
       .post('/property', propertyData)
       .then(res => {
@@ -183,6 +191,8 @@ const NewAdvertise: React.FC = () => {
           console.log(err)
         }
       })
+
+    stopLoading()
   }
 
   const searchZipcode = async (zipcode: string) => {
@@ -191,6 +201,8 @@ const NewAdvertise: React.FC = () => {
     const validZipCode = /^[0-9]{8}$/
 
     if (validZipCode.test(zipcodeNumber)) {
+      startLoading()
+
       await zipcodeApi
         .get<ZipcodeResponseProps>(`/${zipcodeNumber}/json`)
         .then(res => {
@@ -221,6 +233,8 @@ const NewAdvertise: React.FC = () => {
             console.log(err)
           }
         })
+
+      stopLoading()
     }
   }
 
@@ -238,6 +252,8 @@ const NewAdvertise: React.FC = () => {
       }
     }
 
+    startLoading()
+
     await api
       .get<GeolocationProps>('/external/geolocation', config)
       .then(res => {
@@ -250,6 +266,8 @@ const NewAdvertise: React.FC = () => {
       .catch(err => {
         console.error(err)
       })
+
+    stopLoading()
   }
 
   const getEstimatedPropertyPrice = async () => {
@@ -274,6 +292,8 @@ const NewAdvertise: React.FC = () => {
       data: [features]
     }
 
+    startLoading()
+
     await housingPredictorApi
       .post<HousingPredictorRequestProps, HousingPredictorResponseProps>(
         '/predict',
@@ -286,6 +306,8 @@ const NewAdvertise: React.FC = () => {
       .catch(err => {
         console.error(err)
       })
+
+    stopLoading()
   }
 
   const copyEstimatedPrice = () => {

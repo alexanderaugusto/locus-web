@@ -2,14 +2,18 @@ import React, { useState, useEffect, useCallback } from 'react'
 import Head from 'next/head'
 import { faHeartBroken } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../contexts/auth'
+import { useLoading } from '../contexts/loading'
 import { Header, EmptyMessage, PropertyCard } from '../components'
 import api from '../services/api'
 
 const Favorite: React.FC = () => {
   const auth = useAuth()
+  const { startLoading, stopLoading } = useLoading()
   const [favorites, setFavorites] = useState([])
 
   const getFavorites = useCallback(async () => {
+    startLoading()
+
     await api
       .get('/user/favorites')
       .then(res => {
@@ -18,6 +22,8 @@ const Favorite: React.FC = () => {
       .catch(err => {
         console.error(err)
       })
+
+    stopLoading()
   }, [favorites])
 
   const onChangeFavorite = () => {
