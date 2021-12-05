@@ -3,6 +3,21 @@ import { AxiosResponse } from 'axios'
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import api from '../services/api'
 
+type UserPropsRequest = {
+  email?: string
+  password?: string
+  access_token?: string
+}
+
+type UserPropsResponse = {
+  id?: number
+  token?: string
+  email?: string
+  name?: string
+  avatar?: string
+  is_oauth_user: boolean
+}
+
 type UserProps = {
   id?: number
   token?: string
@@ -14,8 +29,13 @@ type UserProps = {
 
 type AuthContextProps = {
   signed: boolean
-  signIn: (email: string, password: string) => Promise<AxiosResponse>
-  signInWithGoogle: (accessToken: string) => Promise<AxiosResponse>
+  signIn: (
+    email: string,
+    password: string
+  ) => Promise<AxiosResponse<UserPropsResponse>>
+  signInWithGoogle: (
+    accessToken: string
+  ) => Promise<AxiosResponse<UserPropsResponse>>
   signOut: () => void
   user: UserProps
 }
@@ -55,14 +75,17 @@ export const AuthProvider: React.FC = ({ children }) => {
   }, [])
 
   function signIn(email: string, password: string) {
-    return new Promise<AxiosResponse>((resolve, reject) => {
+    return new Promise<AxiosResponse<UserPropsResponse>>((resolve, reject) => {
       const data = {
         email,
         password
-      } as { email: string; password: string }
+      }
 
       api
-        .post('/auth/login', data)
+        .post<UserPropsRequest, AxiosResponse<UserPropsResponse>>(
+          '/auth/login',
+          data
+        )
         .then(res => {
           const { avatar, email, id, name, is_oauth_user, token } = res.data
 
@@ -81,9 +104,14 @@ export const AuthProvider: React.FC = ({ children }) => {
   }
 
   function signInWithGoogle(accessToken: string) {
-    return new Promise<AxiosResponse>((resolve, reject) => {
+    return new Promise<AxiosResponse<UserPropsResponse>>((resolve, reject) => {
       api
-        .post('/auth/login/google', { access_token: accessToken })
+        .post<UserPropsRequest, AxiosResponse<UserPropsResponse>>(
+          '/auth/login/google',
+          {
+            access_token: accessToken
+          }
+        )
         .then(res => {
           const { avatar, email, id, name, is_oauth_user, token } = res.data
 

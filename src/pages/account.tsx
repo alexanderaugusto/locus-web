@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Dropzone from 'react-dropzone'
@@ -8,6 +9,14 @@ import { useLoading } from '../contexts/loading'
 import api, { STORAGE_URL } from '../services/api'
 import inputValidation from '../utils/inputValidation'
 import { Button, Header, Input, EmptyMessage } from '../components'
+
+type UserProps = {
+  name: string
+  email: string
+  phone: string
+  avatar: string
+  is_oauth_user: boolean
+}
 
 const Account: React.FC = () => {
   const auth = useAuth()
@@ -24,7 +33,7 @@ const Account: React.FC = () => {
     startLoading()
 
     await api
-      .get('/user')
+      .get<UserProps>('/user')
       .then(res => {
         setUser({
           ...res.data,
