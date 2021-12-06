@@ -61,7 +61,7 @@ const PopertyCard: React.FC<PopertyCardProps> = ({
   const auth = useAuth()
   const router = useRouter()
 
-  const addFavorite = async () => {
+  const addFavorite = () => {
     property.favorite = true
     api
       .put(`/property/${property.id}/favorite`, null)
@@ -75,7 +75,7 @@ const PopertyCard: React.FC<PopertyCardProps> = ({
       })
   }
 
-  const removeFavorite = async () => {
+  const removeFavorite = () => {
     property.favorite = false
     api
       .delete(`/property/${property.id}/favorite`)

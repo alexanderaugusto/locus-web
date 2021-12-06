@@ -32,8 +32,6 @@ const Home: React.FC = () => {
         params: filters
       }
 
-      startLoading()
-
       await api
         .get('/properties', config)
         .then(res => {
@@ -42,8 +40,6 @@ const Home: React.FC = () => {
         .catch(err => {
           console.error(err)
         })
-
-      stopLoading()
     },
     [properties]
   )
