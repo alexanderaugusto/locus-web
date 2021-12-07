@@ -31,12 +31,6 @@ const SelectInput: React.FC<SelectInputProps> = ({
   const setValue = (e, value) => {
     setFieldValue(value)
     applyFilter({ city: value })
-
-    const itemList = e.target.parentElement
-    itemList.classList.add('hidden')
-    setTimeout(() => {
-      itemList.classList.remove('hidden')
-    }, 100)
   }
 
   return (
@@ -53,7 +47,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
             <div
               className="item"
               key={item.city}
-              onClick={e => setValue(e, item.city)}
+              onMouseDown={e => setValue(e, item.city)}
             >
               {`${item.city} - ${item.state}`}
             </div>

@@ -36,10 +36,6 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-.select-input .item-list:hover {
-  display: block;
-}
-
 .select-input .hidden{
   display: none !important;
 }
