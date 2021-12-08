@@ -28,30 +28,39 @@ const SelectInput: React.FC<SelectInputProps> = ({
 }) => {
   const [fieldValue, setFieldValue] = useState('')
 
-  const setValue = (e, value) => {
-    setFieldValue(value)
-    applyFilter({ city: value })
-  }
-
   return (
     <div className="select-input">
       <input
         {...inputProps}
         placeholder={placeholder ?? ''}
         value={fieldValue}
+        onChange={e => {
+          setFieldValue(e.target.value)
+        }}
       />
-      {iconSearch && <Icon id="icon" icon={iconSearch} />}
+      {iconSearch && (
+        <div className="icon-container">
+          <Icon
+            className="search-icon"
+            icon={iconSearch}
+            onClick={() => applyFilter({ city: fieldValue })}
+          />
+        </div>
+      )}
       {items && (
         <div className="item-list">
-          {items?.map(item => (
-            <div
-              className="item"
-              key={item.city}
-              onMouseDown={e => setValue(e, item.city)}
-            >
-              {`${item.city} - ${item.state}`}
-            </div>
-          ))}
+          {items?.map(
+            item =>
+              item?.city?.includes(fieldValue) && (
+                <div
+                  className="item"
+                  key={item.city}
+                  onMouseDown={() => setFieldValue(item.city)}
+                >
+                  {`${item.city} - ${item.state}`}
+                </div>
+              )
+          )}
         </div>
       )}
     </div>

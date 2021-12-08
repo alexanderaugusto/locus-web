@@ -92,7 +92,6 @@ const Home: React.FC = () => {
             iconSearch={faSearch}
             placeholder="Pesquise por localidade..."
             items={cities}
-            readOnly={true}
             applyFilter={filters => {
               getProperties(filters)
             }}

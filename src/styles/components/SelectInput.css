@@ -34,9 +34,29 @@
   z-index: 8;
   overflow: hidden;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  max-height: 200px;
+  overflow-y: scroll;
 }
 
-.select-input .hidden{
+.select-input .item-list::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.select-input .item-list::-webkit-scrollbar-track {
+  background: #e1e1e1;
+  border-radius: 50%;
+}
+
+.select-input .item-list::-webkit-scrollbar-thumb {
+  background: #0565fc;
+}
+
+.select-input .item-list::-webkit-scrollbar-thumb:hover {
+  background: #1971ff;
+}
+
+.select-input .hidden {
   display: none !important;
 }
 
@@ -58,4 +78,22 @@
 .select-input .item-list .item:hover {
   background-color: #0565fc;
   color: #fff;
+}
+
+.icon-container {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0 8px;
+  cursor: pointer;
+}
+
+.icon-container:hover .search-icon {
+  color: #0565fc;
+  transform: scale(1.1);
+}
+
+.search-icon {
+  transition: all 0.1s;
 }
