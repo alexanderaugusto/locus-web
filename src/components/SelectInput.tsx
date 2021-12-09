@@ -28,15 +28,32 @@ const SelectInput: React.FC<SelectInputProps> = ({
 }) => {
   const [fieldValue, setFieldValue] = useState('')
 
+  const submitWithEnter = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    fieldCity
+  ) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      applyFilter({ city: fieldCity })
+    }
+  }
+
+  const onChooseElement = fieldValue => {
+    setFieldValue(fieldValue)
+    applyFilter({ city: fieldValue })
+  }
+
   return (
     <div className="select-input">
       <input
         {...inputProps}
         placeholder={placeholder ?? ''}
         value={fieldValue}
+        id="input-search"
         onChange={e => {
           setFieldValue(e.target.value)
         }}
+        onKeyPress={e => submitWithEnter(e, fieldValue)}
       />
       {iconSearch && (
         <div className="icon-container">
@@ -51,11 +68,11 @@ const SelectInput: React.FC<SelectInputProps> = ({
         <div className="item-list">
           {items?.map(
             item =>
-              item?.city?.includes(fieldValue) && (
+              item?.city?.toLowerCase().includes(fieldValue.toLowerCase()) && (
                 <div
                   className="item"
                   key={item.city}
-                  onMouseDown={() => setFieldValue(item.city)}
+                  onMouseDown={() => onChooseElement(item.city)}
                 >
                   {`${item.city} - ${item.state}`}
                 </div>
