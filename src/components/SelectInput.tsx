@@ -49,6 +49,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
         {...inputProps}
         placeholder={placeholder ?? ''}
         value={fieldValue}
+        autoComplete="off"
         id="input-search"
         onChange={e => {
           setFieldValue(e.target.value)
